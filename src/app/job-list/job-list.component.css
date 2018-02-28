@@ -1,0 +1,26 @@
+ul {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+ul li {
+    width: 30%;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
+ul.list {
+    flex-direction: column;
+    align-items: center;
+}
+
+.jobList .jobCard:hover {
+    background: gainsboro;
+}
+
+.selected .jobCard {
+    background: pink;
+}
