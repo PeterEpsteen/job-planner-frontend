@@ -2,7 +2,7 @@
 <h2>My Jobs</h2>
 <button (click)="listView()">{{viewSetting}}</button>
 <ul class="jobList" [class.list]="list === true">
-  <li *ngFor="let job of jobs" (click)="onSelect(job)" [class.selected]="job === selectedJob">
+  <li *ngFor="let job of jobs" (click)="openDialog(job)" [class.selected]="job === selectedJob">
       <mat-card class="jobCard">
           <mat-card-header>
               <p>{{job.title}}</p>
@@ -13,21 +13,9 @@
         </mat-card>
   </li>
 </ul>
-
 <!-- <div>
     <label for="">
       <input [(ngModel)]="selectedJob.title" placeholder="job.title" type="text">
     </label>
   </div> -->
-<div *ngIf="selectedJob">
-    <mat-card>
-      <mat-card-header>
-          <h2>{{selectedJob.title | uppercase}} Details</h2>
-      </mat-card-header>
-      <mat-card-content>
-          <div><span>Company: </span>{{selectedJob.company}}</div>
-          <div><span>id: </span>{{selectedJob.id}}</div>
-      </mat-card-content>  
-    </mat-card>
-</div>
   

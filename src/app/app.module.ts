@@ -7,6 +7,8 @@ import { JobListComponent } from './job-list/job-list.component';
 import { LoginComponent } from './login/login.component';
 import { JobDetailComponent } from './job-detail/job-detail.component';
 import { HeaderComponent } from './header/header.component';
+import {JobService} from './job.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -20,9 +22,11 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     BrowserModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  entryComponents: [JobDetailComponent],
+  providers: [JobService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
