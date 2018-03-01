@@ -1,10 +1,7 @@
 <div>
-  <label for="username">
-    Username:
-    <input name="username" type="text" [(ngModel)]="login.username" placeholder="login.username">
-  </label>
-  <label for="password">
-    Password:
-      <input name="password" type="text" [(ngModel)]="login.password" placeholder="password">
-    </label>
+    <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="username">
+    <input name="password" type="text" [(ngModel)]="loginInfo.password" placeholder="password">
+    <button (click)="login()">Login</button>
+    <button (click)="logout()">Logout</button>
+    <p *ngIf="cookieValue">cookie: {{cookieValue}}</p>
 </div>

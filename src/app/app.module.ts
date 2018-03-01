@@ -9,7 +9,14 @@ import { JobDetailComponent } from './job-detail/job-detail.component';
 import { HeaderComponent } from './header/header.component';
 import {JobService} from './job.service';
 import {HttpClientModule} from '@angular/common/http';
-
+import {CookieService} from 'ngx-cookie-service';
+import {RouterModule, Routes} from '@angular/router';
+import {AuthService} from './auth.service';
+import {AuthGaurdService} from './auth-gaurd.service';
+const routes: Routes = [
+  {path: 'jobs', component: JobListComponent, canActivate: [AuthGaurdService]},
+  {path: '**', redirectTo: ''}
+];
 
 @NgModule({
   declarations: [
@@ -23,10 +30,11 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     FormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes, {enableTracing: true})
   ],
   entryComponents: [JobDetailComponent],
-  providers: [JobService],
+  providers: [CookieService, JobService, ,AuthGaurdService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
