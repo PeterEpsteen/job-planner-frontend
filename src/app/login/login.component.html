@@ -1,7 +1,16 @@
-<div>
-    <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="username">
-    <input name="password" type="text" [(ngModel)]="loginInfo.password" placeholder="password">
-    <button (click)="login()">Login</button>
-    <button (click)="logout()">Logout</button>
-    <p *ngIf="cookieValue">cookie: {{cookieValue}}</p>
+<div class="flex-container">
+        <mat-card class="loginCard">
+                <mat-card-content class="cardContent">
+                    <div class="flex-container col">
+                                    <h3>Login to your account</h3>
+                                            <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="username">
+                                            <input name="password" type="text" [(ngModel)]="loginInfo.password" placeholder="password">
+                                    <button (click)="login()">Login</button>
+                                    <button (click)="register()">Register</button>
+
+                    </div> 
+                    
+                </mat-card-content>  
+            </mat-card>
+        <div>            
 </div>

@@ -3,6 +3,7 @@ import {Login} from '../models/login';
 import {User} from '../models/user';
 import {JobService} from '../job.service';
 import {CookieService} from 'ngx-cookie-service';
+import {Router} from '@angular/router';
 
  
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   cookieValue: string;
   
-  constructor(private cookieService: CookieService, private jobService: 
+  constructor(private router: Router, private cookieService: CookieService, private jobService: 
     JobService) { }
 
   login(): void {
@@ -35,6 +36,14 @@ export class LoginComponent implements OnInit {
   }
   setToken(): void {
     localStorage.setItem("token", this.token);
+    this.router.navigateByUrl("/jobs");
+  }
+
+  register(): void {
+    this.jobService.register(this.loginInfo)
+    .subscribe(body => {
+      alert("Registered");
+    })
   }
 
   

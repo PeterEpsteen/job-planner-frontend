@@ -14,8 +14,9 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthService} from './auth.service';
 import {AuthGaurdService} from './auth-gaurd.service';
 const routes: Routes = [
+  {path: '', component: LoginComponent},
   {path: 'jobs', component: JobListComponent, canActivate: [AuthGaurdService]},
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: '/'}
 ];
 
 @NgModule({

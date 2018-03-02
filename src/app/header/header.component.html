@@ -5,7 +5,7 @@
       Job Journal 
     </li>
     <li class="ml-auto">
-      <app-login></app-login>
+      <button *ngIf="loggedIn" (click)="logout()">Logout</button>
     </li>
   </ul>
 </div>
