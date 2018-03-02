@@ -5,8 +5,7 @@ import { Subject } from 'rxjs/Subject';
 @Injectable()
 export class AuthService {
 
-  isLoggedIn: boolean;
-  isLoggedInChange: Subject<boolean> = new Subject<boolean>();
+  isLoggedIn: Subject<boolean> = new Subject<boolean>();
   constructor() { }
   public isAuthenticated(): boolean {
     let jwtHelper = new JwtHelper();
@@ -18,7 +17,6 @@ export class AuthService {
   }
 
   public changeLogin() {
-    this.isLoggedIn = this.isAuthenticated();
-    this.isLoggedInChange.next(this.isLoggedIn);
+    this.isLoggedIn.next(this.isAuthenticated());
   }
 }

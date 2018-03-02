@@ -1,21 +1,19 @@
-
-<h2>My Jobs</h2>
-<button (click)="listView()">{{viewSetting}}</button>
-<ul class="jobList" [class.list]="list === true">
-  <li *ngFor="let job of jobs" (click)="openDialog(job)" [class.selected]="job === selectedJob">
-      <mat-card class="jobCard">
-          <mat-card-header>
-              <p>{{job.title}}</p>
-          </mat-card-header>
-          <mat-card-content>
-          <p>{{job.company}}</p>
-          </mat-card-content>  
-        </mat-card>
-  </li>
-</ul>
-<!-- <div>
-    <label for="">
-      <input [(ngModel)]="selectedJob.title" placeholder="job.title" type="text">
-    </label>
-  </div> -->
-  
+<div class="main-container">
+  <div class="row">
+      <button class="blue" mat-raised-button (click)="addJob()">Add</button>
+      <button mat-raised-button (click)="listView()">{{viewSetting}}</button>
+  </div>
+    <ul class="jobList" [class.list]="list === true">
+      
+      
+      <li *ngFor="let job of jobs" (click)="openDialog(job)" [class.selected]="job === selectedJob">
+          <mat-card class="jobCard">
+                 <!-- on click goes to job/:id -->
+              <mat-card-content>
+              <h2>{{job.title}}</h2>
+              <h3>{{job.company}}</h3>
+              </mat-card-content>  
+            </mat-card>
+      </li>
+    </ul>
+</div>

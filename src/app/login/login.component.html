@@ -1,12 +1,13 @@
-<div class="flex-container">
+
+<div class="flex-container main">
         <mat-card class="loginCard">
                 <mat-card-content class="cardContent">
                     <div class="flex-container col">
                                     <h3>Login to your account</h3>
                                             <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="username">
                                             <input name="password" type="text" [(ngModel)]="loginInfo.password" placeholder="password">
-                                    <button (click)="login()">Login</button>
-                                    <button (click)="register()">Register</button>
+                                    <button mat-raised-button (click)="login()">Login</button>
+                                    <a routerLink="/register">Register</a>
 
                     </div> 
                     

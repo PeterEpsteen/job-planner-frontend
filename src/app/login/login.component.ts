@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Login} from '../models/login';
 import {User} from '../models/user';
-import {JobService} from '../job.service';
+import {UserService} from '../user.service';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
-
+import {AuthService} from '../auth.service';
  
 @Component({
   selector: 'app-login',
@@ -17,38 +17,30 @@ export class LoginComponent implements OnInit {
     password: ""
   };
 
-  token: string;
-
-  cookieValue: string;
-  
-  constructor(private router: Router, private cookieService: CookieService, private jobService: 
-    JobService) { }
+  constructor(private router: Router, private cookieService: CookieService, private userService: 
+    UserService, private auth: AuthService) { }
 
   login(): void {
-    this.jobService.login(this.loginInfo) 
+    this.userService.login(this.loginInfo) 
     .subscribe(user => {
-      this.token = user.token;
-      this.setToken();
+      this.router.navigateByUrl("/jobs");
     });
   }
   logout(): void {
-    localStorage.removeItem('token');
-  }
-  setToken(): void {
-    localStorage.setItem("token", this.token);
-    this.router.navigateByUrl("/jobs");
+    this.userService.logout();
   }
 
   register(): void {
-    this.jobService.register(this.loginInfo)
+    this.userService.register(this.loginInfo)
     .subscribe(body => {
-      alert("Registered");
-    })
+      console.log("Registered");
+    });
   }
 
   
 
   ngOnInit() {
+    this.userService.logout();
   }
 
 }

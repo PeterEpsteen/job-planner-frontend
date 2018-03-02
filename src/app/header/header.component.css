@@ -1,14 +1,27 @@
 .navbar {
     width: 100%;
     background-color: dodgerblue;
-    font: 500 20px/32px Roboto,"Helvetica Neue",sans-serif;
+    font-family: 'Lobster', cursive;
     color: white;
 }
+#logo {
+    font-size: 2rem;
+    font-family: 'Lobster', cursive;
+}
 .navbar ul {
+    margin: auto;
+    max-width: 1400px;
     height: 64px;
     display: flex;
     flex-direction: row;
     align-items: center;
     box-sizing: border-box;
     padding: 0 16px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin-right: 16px;
 }

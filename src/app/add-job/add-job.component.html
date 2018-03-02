@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Add Job</h2>
+<mat-dialog-content>
+    <div class="flex-container col">
+        <mat-form-field>
+          <input matInput [(ngModel)]="job.company" placeholder="Company or Employer">
+        </mat-form-field>
+      
+        <mat-form-field>
+            <input matInput [(ngModel)]="job.title" placeholder="Position you're going for">
+          </mat-form-field>
+    
+          <button mat-button [mat-dialog-close]="job">Yes</button>
+      
+        <!-- <mat-form-field>
+          <mat-select placeholder="Select">
+            <mat-option value="applied">Already Applied</mat-option>
+          </mat-select>
+        </mat-form-field> -->
+      </div>
+      
+</mat-dialog-content>

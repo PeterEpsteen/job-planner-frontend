@@ -1,11 +1,14 @@
 
 <div class="navbar">
   <ul>
-    <li>
-      Job Journal 
+    <li id="logo">
+      Gig Journal 
     </li>
     <li class="ml-auto">
-      <button *ngIf="loggedIn" (click)="logout()">Logout</button>
+      <a routerLink="/jobs" routerLinkActive="active">Jobs</a>
     </li>
+    <li>
+        <button mat-button *ngIf="loggedIn" (click)="logout()">Logout</button>
+      </li>
   </ul>
 </div>

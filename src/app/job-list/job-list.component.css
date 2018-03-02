@@ -24,3 +24,13 @@ ul.list {
 .selected .jobCard {
     background: pink;
 }
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+button {
+    margin-right: 16px;
+}
