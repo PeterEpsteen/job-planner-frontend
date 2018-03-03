@@ -1,0 +1,46 @@
+.main-container {
+    max-width: 800px;
+}
+
+div.row {
+    display: flex;
+    flex-direction: row;
+}
+.content {
+    padding-left: 16px;
+    flex: 1;
+}
+
+.noLogo {
+    height: 50px;
+    width: 50px;
+    color: white;
+    background-color: firebrick;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.navbar {
+    height: 72px;
+    background: dodgerblue;
+}
+.mat-divider.divider {
+    margin-top: 16px !important;
+    margin-bottom: 16px !important;
+}
+
+.item-title {
+    font-size: 1.2rem;
+}
+.item-date {
+    color: lightgrey;
+    margin-left: 16px
+}
+.item-description {
+    margin-left: 16px;
+}
+
+ul {
+    padding-left: 0;
+}

@@ -1,18 +1,66 @@
-ul {
+.jobList {
     margin-top: 16px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
-
-ul li {
+.top-bar {
+    padding: 16px 0 16px 0;
+    margin: auto;
+    flex: 1;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.jobList li {
     width: 30%;
     margin-right: 16px;
     margin-bottom: 16px;
 }
-
-ul.list {
+.top-bar {
+    
+}
+.top-bar li {
+    padding-left: 16px;
+}
+.jobCard .content {
+    margin-top: 8px;
+    margin-left: 16px;
+    flex: 1;
+}
+.jobCard p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.noLogo {
+    height: 50px;
+    width: 50px;
+    color: white;
+    background-color: firebrick;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+}
+.blue {
+    background-color: dodgerblue;
+}
+.violet {
+    background-color: darkmagenta;
+}
+.green {
+    background-color: green;
+}
+.yellow {
+    background-color: goldenrod;
+}
+#logo {
+    margin-left: 16px;
+    font-size: 2rem;
+    color: white;
+}
+.jobList.list {
     flex-direction: column;
     align-items: center;
 }
@@ -25,12 +73,24 @@ ul.list {
     background: pink;
 }
 
+button {
+    margin-right: 16px;
+}
+
+ul {
+    padding-left: 0;
+}
+
+.job-stats {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
 .row {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
 }
-
-button {
-    margin-right: 16px;
+.navbar {
+    height: 72px;
+    background: dodgerblue;
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {Job} from '../models/job';
 import {JOBS} from '../models/mock-jobs';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatButtonBase} from '@angular/material';
 import {JobDetailComponent} from '../job-detail/job-detail.component'
 import {JobService} from '../job.service';
 import { AddJobComponent } from '../add-job/add-job.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-job-list',
   templateUrl: './job-list.component.html',
@@ -15,9 +16,11 @@ export class JobListComponent implements OnInit {
   selectedJob: Job;
   list = false;
   newJob: Job;
-  viewSetting = "Grid";
+  colors = ["", "blue", "violet", "green", "yellow"];
+  randomColor = this.getRandomColor();
+  viewSetting = "List";
   constructor(public dialog: MatDialog, private jobService: 
-    JobService) {  }
+    JobService, private router: Router) {  }
 
     getJobs(): void {
       this.jobService.getJobs()
@@ -41,23 +44,22 @@ export class JobListComponent implements OnInit {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       this.newJob = result;
       this.addJobToServer();
     });
+  }
+  getRandomColor(): string {
+    let rand: number = Math.floor(Math.random() * 6);
+    return this.colors[rand];
   }
   addJobToServer() {
     console.log(this.newJob);
       this.jobService.addJob(this.newJob).subscribe(res => {this.ngOnInit()});
   }
 
-  openDialog(job: Job): void {
-      let dialogRef = this.dialog.open(JobDetailComponent, {
-        width: '400px',
-        data: job
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        this.newJob = result;
-      })
+  openDetails(job: Job): void {
+      this.router.navigateByUrl("/job/" + job.id);
   }
 
 }

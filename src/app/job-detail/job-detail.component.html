@@ -1,5 +1,72 @@
+<div class="navbar">
+  <div class="row">
+    <ul class="top-bar">
+      <li id="logo">Gig details</li>
+    </ul>
+  </div>
+</div>
+<div class="main-container">
+  <mat-card *ngIf="job">
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <img *ngIf="job.companyDomain" mat-card-avatar src="{{job.companyDomain}}">
+          <div *ngIf="!job.companyDomain" class="noLogo">
+            {{job.company.charAt(0)}}
+          </div>
+        </div>
+        <div class="col content">
+          <div class="row">
+            <div class="col">
+              <h2>{{job.company}}</h2>
+            </div>
+          </div>
 
-<div>
-  <h1>{{job.title}} at {{job.company}}</h1>
-  <p>id: {{job.id}}</p>
+          <p>{{job.title}}</p>
+          <mat-divider [inset]="true" class="divider"></mat-divider>
+          <div class="row">
+            <div class="col">
+              <h3>Tasks ({{job.todos.length}})</h3>
+            </div>
+            <div class="col ml-auto">
+              <button class="blue" mat-raised-button (click)="addTodo()">Add</button>
+            </div>
+          </div>
+          <ul>
+            <li *ngFor="let todo of job.todos">
+                <div class="row">
+                    <div class="col">
+                            <p class="item-title">{{todo.title}}</p>
+                            <p class="item-date">{{todo.date}}</p>
+                            <p class="item-description">{{todo.description}}</p>
+                    </div>
+                    <div class="col ml-auto"><button color="warn" mat-button (click)="deleteTodo(todo.id)">Delete</button></div>
+                </div>
+                
+                <mat-divider class="divider" [inset] = "true"></mat-divider>
+            </li>
+          </ul>
+          <div class="row">
+            <div class="col">
+              <h3>Events ({{job.events.length}})</h3>
+            </div>
+            <div class="col ml-auto">
+              <button class="blue" mat-raised-button (click)="addTodo()">Add</button>
+            </div>
+          </div>
+          <mat-divider [inset]="true" class="divider"></mat-divider>
+          <div class="row">
+            <div class="col">
+                <h3>Contacts ({{job.contacts.length}})</h3>
+            </div>
+            <div class="col ml-auto">
+              <button class="blue" mat-raised-button (click)="addTodo()">Add</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
 </div>

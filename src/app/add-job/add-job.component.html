@@ -1,21 +1,26 @@
 <h2 mat-dialog-title>Add Job</h2>
 <mat-dialog-content>
+    <form [formGroup]="companyForm">
     <div class="flex-container col">
-        <mat-form-field>
-          <input matInput [(ngModel)]="job.company" placeholder="Company or Employer">
-        </mat-form-field>
       
-        <mat-form-field>
-            <input matInput [(ngModel)]="job.title" placeholder="Position you're going for">
-          </mat-form-field>
-    
-          <button mat-button [mat-dialog-close]="job">Yes</button>
-      
-        <!-- <mat-form-field>
-          <mat-select placeholder="Select">
-            <mat-option value="applied">Already Applied</mat-option>
-          </mat-select>
-        </mat-form-field> -->
+          <mat-form-field>
+              <input matInput type="text" [matAutocomplete]="auto" formControlName="company" placeholder="Company or Employer">
+            </mat-form-field>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option (click) = "setUrl(company.logo)" *ngFor="let company of companies" [value]="company.name">
+                 <img style="vertical-align:middle;" aria-hidden src="{{company.logo}}" height="25" />
+                <span>{{company.name}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          
+            <mat-form-field>
+                <input matInput formControlName="title" placeholder="Position you're going for">
+              </mat-form-field>
+
       </div>
-      
+    </form>
+
 </mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="companyForm.value">Save</button>
+</mat-dialog-actions>

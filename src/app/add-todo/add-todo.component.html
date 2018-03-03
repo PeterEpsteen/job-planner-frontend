@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Add Todo</h2>
+<mat-dialog-content>
+    <form [formGroup]="todoForm">
+    <div class="flex-container col">
+          <mat-form-field>
+              <input matInput type="text" formControlName="title" placeholder="What do you need to do?">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput formControlName="date" placeholder="Date due?">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="description" placeholder="Details (optional)">
+              </mat-form-field>
+      </div>
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="todoForm.value">Save</button>
+</mat-dialog-actions>

@@ -7,16 +7,16 @@
 #logo {
     font-size: 2rem;
     font-family: 'Lobster', cursive;
+    margin-right: 32px;
 }
 .navbar ul {
     margin: auto;
-    max-width: 1400px;
     height: 64px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     box-sizing: border-box;
-    padding: 0 16px;
+    padding: 8px 32px;
 }
 
 a {

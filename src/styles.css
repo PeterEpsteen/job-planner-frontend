@@ -14,6 +14,9 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+h2 {
+    color: dodgerblue;
+}
 .main-container {
     background: #E8E8E8;
     max-width: 1400px;
@@ -30,11 +33,22 @@ button.blue {
     color: white;
 }
 
+.navbar {
+    height: 72px;
+    background: dodgerblue;
+}
+
+
+
 ul {
     list-style-type: none;
     margin: 0;
 }
-
+#logo {
+    margin-left: 16px;
+    font-size: 1.5rem;
+    color: white;
+}
 .ml-auto {
     margin-left: auto;
 }

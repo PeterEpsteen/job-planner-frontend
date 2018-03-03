@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import { AppComponent } from './app.component';
 import { JobListComponent } from './job-list/job-list.component';
@@ -52,12 +52,14 @@ import {
   MatTooltipModule,
 } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
+import { AddTodoComponent } from './add-todo/add-todo.component';
 
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'jobs', component: JobListComponent, canActivate: [AuthGaurdService]},
+  {path: 'job/:id', component: JobDetailComponent, canActivate: [AuthGaurdService]},
   {path: '**', redirectTo: 'jobs'}
 ];
 
@@ -69,7 +71,8 @@ const routes: Routes = [
     JobDetailComponent,
     HeaderComponent,
     RegisterComponent,
-    AddJobComponent
+    AddJobComponent,
+    AddTodoComponent
   ],
   imports: [
     BrowserModule,
@@ -77,12 +80,15 @@ const routes: Routes = [
     MaterialModule,
     HttpClientModule,
     MatFormFieldModule,
+    MatAutocompleteModule,
     MatOptionModule,
     MatSelectModule,
     MatInputModule,
+    MatDividerModule,
     RouterModule.forRoot(routes),
+    ReactiveFormsModule
   ],
-  entryComponents: [JobDetailComponent, AddJobComponent],
+  entryComponents: [JobDetailComponent, AddJobComponent, AddTodoComponent],
   providers: [CookieService, JobService, ,AuthGaurdService, AuthService, UserService],
   bootstrap: [AppComponent]
 })

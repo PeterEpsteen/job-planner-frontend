@@ -1,6 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatFormField, MatFormFieldModule} from '@angular/material';
 import { Job } from '../models/job';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Observable} from 'rxjs/Observable';
+import { map, startWith } from 'rxjs/operators';
+import { JobService } from '../job.service';
+import 'rxjs/add/observable/of';
+import { Subscription } from 'rxjs/Subscription';
+import { Company } from '../models/company';
 
 
 @Component({
@@ -9,16 +16,44 @@ import { Job } from '../models/job';
   styleUrls: ['./add-job.component.css']
 })
 export class AddJobComponent implements OnInit {
-
+  companyForm: FormGroup;
   job: Job = new Job();
-  constructor(public dialogRef: MatDialogRef<AddJobComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { 
+  suggestCompanies: Observable<Job[]>;
+  companies: Company[];
+  constructor(private jS: JobService, public dialogRef: MatDialogRef<AddJobComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) {
+      this.createForm();
+    } 
+
+    createForm() {
+      this.companyForm = this.fb.group({
+        company: '',
+        title: '',
+        companyDomain: '',
+      });
+      
     }
 
   ngOnInit() {
+    this.companyForm.get('company').valueChanges
+      .subscribe(term => {
+        if(term === '') {
+          this.companies = [];
+        }
+        else {
+          this.jS.autoCompleteCompanies(term).subscribe(res => this.companies = res)
+        }
+      });
   }
 
+  setUrl(url: string) {
+    this.companyForm.get('companyDomain').setValue(url);
+  }
+
+
   addJob() {
+    this.job = this.companyForm.value;
+    console.log(this.job);
     this.dialogRef.close(this.job);
   }
 

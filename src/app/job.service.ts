@@ -6,7 +6,9 @@ import {Observable} from 'rxjs/Observable'
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { Login } from './models/login';
+import { Todo } from './models/todo';
 import { User } from './models/user';
+import { Company } from './models/company';
 import {Response} from '@angular/http'
 import { HttpResponse } from 'selenium-webdriver/http';
 import { Subject } from 'rxjs/Subject';
@@ -39,6 +41,16 @@ export class JobService {
     });
   }
 
+  autoCompleteCompanies(text: string): Observable<Company[]> {
+    return this.http.get<Company[]>(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${text}`)
+    .pipe(tap(res => {console.log(res)}));
+  }
+
+  getJob(id: number) {
+    return this.http.get<Job>(`http://localhost:8080/jobs/${id}`, {headers: {'x-access-token': localStorage.getItem('token')}})
+    .pipe(catchError(this.handleError<any>('getJob')));
+  }
+
   addJob(job: Job): Observable<any> {
     console.log(localStorage.getItem('token'));
     httpOptions.headers.set('x-access-token', localStorage.getItem('token'));
@@ -48,6 +60,32 @@ export class JobService {
     .pipe(
       tap(res => {console.log(res)}),
       catchError(this.handleError<any>('addUser'))
+    );
+  }
+
+  addTodo(todo: Todo, id: number): Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/jobs/todo/${id}`, todo,  {
+      headers: {'x-access-token': localStorage.getItem('token'), 'Content-Type': 'application/json'}
+    })
+    .pipe(
+      tap(res => {console.log(res)}),
+      catchError(this.handleError<any>('addTodo'))
+    );
+  }
+
+  getTodos(id: number): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`http://localhost:8080/jobs/todo/${id}`, {
+      headers: {'x-access-token': localStorage.getItem('token')}
+    });
+  }
+
+  deleteTodo(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/jobs/todo/${id}`,  {
+      headers: {'x-access-token': localStorage.getItem('token')}
+    })
+    .pipe(
+      tap(res => {console.log(res)}),
+      catchError(this.handleError<any>('deleteTodo'))
     );
   }
   
