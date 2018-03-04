@@ -1,6 +1,15 @@
 .flex-container.main {
     background: dodgerblue;
     padding-top: 64px;
+    justify-content: center;
+    text-align: center;
+}
+
+.main h1 {
+    color: white;
+    font-family: "Lobster", cursive;
+    margin-bottom: 32px;
+    font-weight: 300;
 }
 .loginCard {
     margin-left: auto;

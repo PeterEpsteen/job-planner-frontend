@@ -1,14 +1,31 @@
-.main-container {
-    max-width: 800px;
+
+.body {
+    background-color: #fafafa;
+    width: 100%;
+    min-height: 100%;
 }
 
+.main-container {
+    max-width: 1200px;
+    background: #fafafa;
+}
+.mat-card-avatar {
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+}
 div.row {
     display: flex;
     flex-direction: row;
 }
+.task-list p {
+    font-size: 1.5em;
+    margin-bottom: 16px;
+}
 .content {
     padding-left: 16px;
     flex: 1;
+    padding-top: 8px;
 }
 
 .noLogo {
@@ -21,6 +38,42 @@ div.row {
     font-size: 2rem;
 }
 
+.top-bar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    font-size: 28px;
+}
+.mat-checkbox {
+    margin-right: 16px;
+}
+h3 {
+    font-size: 20px;
+}
+
+.mt-5 {
+    margin-top: 48px;
+}
+
+
+.mat-expansion-panel p {
+    padding-left: 40px;
+}
+.large {
+    font-size: 1.2rem;
+}
+.mat-expansion-panel {
+    padding: 16px;
+    flex: 1;
+    margin-top: 16px;
+}
+.todo-date {
+    flex-grow: 0 !important;
+}
 .navbar {
     height: 72px;
     background: dodgerblue;
@@ -43,4 +96,10 @@ div.row {
 
 ul {
     padding-left: 0;
+}
+
+#logo {
+    font-weight: 300;
+    font-size: 20px;
+    margin-left: 40px;
 }

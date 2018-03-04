@@ -15,6 +15,9 @@ import { Subject } from 'rxjs/Subject';
 import {AuthService} from './auth.service'
 import {Router, Route} from '@angular/router';
 import { UserService } from './user.service';
+import { EventModel } from './models/event';
+import 'rxjs/add/operator/map';
+import { Contact } from './models/contact';
 
 
 const httpOptions = {
@@ -43,8 +46,12 @@ export class JobService {
 
   autoCompleteCompanies(text: string): Observable<Company[]> {
     return this.http.get<Company[]>(`https://autocomplete.clearbit.com/v1/companies/suggest?query=${text}`)
-    .pipe(tap(res => {console.log(res)}));
+    .pipe(
+      tap(res => {console.log(res)})
+    );
   }
+
+ 
 
   getJob(id: number) {
     return this.http.get<Job>(`http://localhost:8080/jobs/${id}`, {headers: {'x-access-token': localStorage.getItem('token')}})
@@ -63,6 +70,26 @@ export class JobService {
     );
   }
 
+  addEvent(newEvent: EventModel, jobId: number): Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/jobs/event/${jobId}`, newEvent,  {
+      headers: {'x-access-token': localStorage.getItem('token'), 'Content-Type': 'application/json'}
+    })
+    .pipe(
+      tap(res => {console.log(res)}),
+      catchError(this.handleError<any>('addEvent'))
+    );
+  }
+
+  addContact(newContact: Contact, jobId: number): Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/jobs/contact/${jobId}`, newContact,  {
+      headers: {'x-access-token': localStorage.getItem('token'), 'Content-Type': 'application/json'}
+    })
+    .pipe(
+      tap(res => {console.log(res)}),
+      catchError(this.handleError<any>('addContact'))
+    );
+  }
+
   addTodo(todo: Todo, id: number): Observable<any> {
     return this.http.post<any>(`http://localhost:8080/jobs/todo/${id}`, todo,  {
       headers: {'x-access-token': localStorage.getItem('token'), 'Content-Type': 'application/json'}
@@ -70,6 +97,15 @@ export class JobService {
     .pipe(
       tap(res => {console.log(res)}),
       catchError(this.handleError<any>('addTodo'))
+    );
+  }
+
+  updateTodo(todo: Todo): Observable<any> {
+    return this.http.put(`http://localhost:8080/jobs/todo`, todo, {
+      headers: {'x-access-token': localStorage.getItem('token')}
+    })
+    .pipe(
+      tap(res => console.log(res)), catchError(this.handleError<any>('updateTodo'))
     );
   }
 
@@ -86,6 +122,24 @@ export class JobService {
     .pipe(
       tap(res => {console.log(res)}),
       catchError(this.handleError<any>('deleteTodo'))
+    );
+  }
+  deleteEvent(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/jobs/event/${id}`,  {
+      headers: {'x-access-token': localStorage.getItem('token')}
+    })
+    .pipe(
+      tap(res => {console.log(res)}),
+      catchError(this.handleError<any>('deleteEvent'))
+    );
+  }
+  deleteContact(id: number): Observable<any> {
+    return this.http.delete<any>(`http://localhost:8080/jobs/contact/${id}`,  {
+      headers: {'x-access-token': localStorage.getItem('token')}
+    })
+    .pipe(
+      tap(res => {console.log(res)}),
+      catchError(this.handleError<any>('deleteContact'))
     );
   }
   

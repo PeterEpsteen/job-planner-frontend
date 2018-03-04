@@ -6,12 +6,14 @@ import {JobDetailComponent} from '../job-detail/job-detail.component'
 import {JobService} from '../job.service';
 import { AddJobComponent } from '../add-job/add-job.component';
 import { Router } from '@angular/router';
+import { Todo } from '../models/todo';
 @Component({
   selector: 'app-job-list',
   templateUrl: './job-list.component.html',
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
+  isLoading: boolean;
   jobs: Job[];
   selectedJob: Job;
   list = false;
@@ -24,8 +26,22 @@ export class JobListComponent implements OnInit {
 
     getJobs(): void {
       this.jobService.getJobs()
-          .subscribe(jobs => this.jobs = jobs);
+          .subscribe(jobs => {
+            this.jobs = jobs;
+            this.isLoading = false;
+          });
     }
+
+    sortByDate(a: Todo, b: Todo): number {
+      let bDate = new Date(b.date);
+      let aDate = new Date(a.date);
+      return aDate.getTime() -  bDate.getTime();
+  }
+
+  getNearestTask(job: Job) {
+    let inProgressTodos = job.todos.filter(todo => todo.complete != 'true');
+    return inProgressTodos.sort(this.sortByDate)[0];
+  }
 
   onSelect(job: Job): void {
     this.selectedJob = job;
@@ -37,6 +53,7 @@ export class JobListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.getJobs();
   }
   addJob() {

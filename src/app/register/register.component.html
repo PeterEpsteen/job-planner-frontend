@@ -1,12 +1,14 @@
 
 <div class="flex-container main">
+        <div class="col">
+                <h1>Gig Journal</h1>
     <mat-card class="loginCard">
             <mat-card-content class="cardContent">
                 <div class="flex-container col">
                                 <h3>Register</h3>
                                         <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="Username">
-                                        <input name="password" type="text" [(ngModel)]="loginInfo.password" placeholder="Password">
-                                        <input name="password" type="text" [(ngModel)]="confirmPassword" placeholder="Confirm password">
+                                        <input name="password" type="password" [(ngModel)]="loginInfo.password" placeholder="Password">
+                                        <input name="password" type="password" [(ngModel)]="confirmPassword" placeholder="Confirm password">
                                 <button mat-raised-button (click)="register()">Register</button>
                                 <a routerLink="/login">Already Registered?</a>
                 </div> 

@@ -1,72 +1,159 @@
+<mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
 <div class="navbar">
-  <div class="row">
     <ul class="top-bar">
       <li id="logo">Gig details</li>
     </ul>
-  </div>
 </div>
-<div class="main-container">
-  <mat-card *ngIf="job">
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <img *ngIf="job.companyDomain" mat-card-avatar src="{{job.companyDomain}}">
-          <div *ngIf="!job.companyDomain" class="noLogo">
-            {{job.company.charAt(0)}}
-          </div>
-        </div>
-        <div class="col content">
-          <div class="row">
-            <div class="col">
-              <h2>{{job.company}}</h2>
+<div class="body">
+    <div *ngIf="job" class="main-container">
+        <div class="row">
+          <div class="col">
+            <img *ngIf="job.companyDomain" class="mat-card-avatar" src="{{job.companyDomain}}">
+            <div *ngIf="!job.companyDomain" class="noLogo">
+              {{job.company.charAt(0)}}
             </div>
           </div>
+          <div class="col content">
+            <div class="row">
+              <div class="col">
+                <h2>{{job.company}}</h2>
+              </div>
+            </div>
+  
+            <p>{{job.title}}</p>
+            <mat-divider class="divider"></mat-divider>
+            <div class="row">
+              <div class="col">
+                <h3>Tasks ({{job.todos.length}})</h3>
+              </div>
+              <div class="col ml-auto">
+                <button class="blue" mat-raised-button (click)="addTodo()">Add</button>
+              </div>
+            </div>
 
-          <p>{{job.title}}</p>
-          <mat-divider [inset]="true" class="divider"></mat-divider>
-          <div class="row">
-            <div class="col">
-              <h3>Tasks ({{job.todos.length}})</h3>
-            </div>
-            <div class="col ml-auto">
-              <button class="blue" mat-raised-button (click)="addTodo()">Add</button>
-            </div>
-          </div>
-          <ul>
-            <li *ngFor="let todo of job.todos">
+            <!-- In Progress Todos -->
+
+            <ul *ngIf="inProgressTodos" class="task-list">
+              <li *ngFor="let todo of inProgressTodos">
                 <div class="row">
-                    <div class="col">
-                            <p class="item-title">{{todo.title}}</p>
-                            <p class="item-date">{{todo.date}}</p>
-                            <p class="item-description">{{todo.description}}</p>
-                    </div>
-                    <div class="col ml-auto"><button color="warn" mat-button (click)="deleteTodo(todo.id)">Delete</button></div>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                          <mat-checkbox color="warn" (change)="checkTodo($event, todo)"></mat-checkbox>
+                           <span class="large" [ngClass]="{'strike-through': todo.complete == 'true'}">{{todo.title}}</span>
+                          </mat-panel-title>
+                          <mat-panel-description *ngIf="dateValid(todo)" class="todo-date">
+                            <span [ngClass]="pastDue(todo.date)">Due By: {{todo.date | date}}</span>    
+                          </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <div class="row">
+                          <div class="col">
+                              <p>{{todo.description}}</p>
+                          </div>
+                        <div class="col ml-auto">
+                            <button color="warn" mat-button (click)="deleteTodo(todo.id)">Delete</button>
+                        </div>
+                        </div>
+                      </mat-expansion-panel>
                 </div>
-                
-                <mat-divider class="divider" [inset] = "true"></mat-divider>
-            </li>
-          </ul>
-          <div class="row">
-            <div class="col">
-              <h3>Events ({{job.events.length}})</h3>
-            </div>
-            <div class="col ml-auto">
-              <button class="blue" mat-raised-button (click)="addTodo()">Add</button>
-            </div>
-          </div>
-          <mat-divider [inset]="true" class="divider"></mat-divider>
-          <div class="row">
-            <div class="col">
-                <h3>Contacts ({{job.contacts.length}})</h3>
-            </div>
-            <div class="col ml-auto">
-              <button class="blue" mat-raised-button (click)="addTodo()">Add</button>
-            </div>
-          </div>
-          
-        </div>
-      </div>
+              </li>
+            </ul>
 
-    </mat-card-content>
-  </mat-card>
+            <!-- Completed Todos -->
+
+            <ul *ngIf="completeTodos" class="task-list">
+                <li *ngFor="let todo of completeTodos">
+                  <div class="row">
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                            <mat-checkbox checked="true" color="blue" (change)="checkTodo($event, todo)"></mat-checkbox>
+                             <span class="large" [ngClass]="{'strike-through': todo.complete}">{{todo.title}}</span>
+                            </mat-panel-title>
+                            <mat-panel-description class="todo-date">
+                              {{todo.date | date}}
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div class="row">
+                            <div class="col">
+                                <p>{{todo.description}}</p>
+                            </div>
+                          <div class="col ml-auto">
+                              <button color="warn" mat-button (click)="deleteTodo(todo.id)">Delete</button>
+                          </div>
+                          </div>
+                        </mat-expansion-panel>
+                  </div>
+                </li>
+              </ul>
+
+            <div class="row mt-5">
+              <div class="col">
+                <h3>Events ({{job.events.length}})</h3>
+              </div>
+              <div class="col ml-auto">
+                <button class="blue" mat-raised-button (click)="addEvent()">Add</button>
+              </div>
+            </div>
+            <ul *ngIf="events" class="task-list">
+                <li *ngFor="let event of events">
+                  <div class="row">
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                             <span class="large">{{event.title}}</span>
+                            </mat-panel-title>
+                            <mat-panel-description class="todo-date">
+                              {{event.date | date}}
+                            </mat-panel-description>
+                          </mat-expansion-panel-header>
+                          <div class="row">
+                            <div class="col">
+                                <p>{{event.description}}</p>
+                            </div>
+                          <div class="col ml-auto">
+                              <button color="warn" mat-button (click)="deleteEvent(event.id)">Delete</button>
+                          </div>
+                          </div>
+                        </mat-expansion-panel>
+                  </div>
+                </li>
+              </ul>
+            <div class="row mt-5">
+              <div class="col">
+                  <h3>Contacts ({{job.contacts.length}})</h3>
+              </div>
+              <div class="col ml-auto">
+                <button class="blue" mat-raised-button (click)="addContact()">Add</button>
+              </div>
+            </div>
+            <ul *ngIf="contacts" class="task-list">
+                <li *ngFor="let contact of contacts">
+                  <div class="row">
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title>
+                             <h3>{{contact.name}}</h3>
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <div class="row">
+                            <div class="col">
+                                <p *ngIf="contact.title">Position: {{contact.title}}</p>
+                                <p>Email: {{contact.email}}</p>
+                                <p>Phone: {{contact.phone}}</p>
+                            </div>
+                          <div class="col ml-auto">
+                              <button color="warn" mat-button (click)="deleteContact(contact.id)">Delete</button>
+                          </div>
+                          </div>
+                        </mat-expansion-panel>
+                  </div>
+                </li>
+              </ul>
+            
+          </div>
+        </div>
+  </div>
+    
 </div>

@@ -4,30 +4,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-add-todo',
-  templateUrl: './add-todo.component.html',
-  styleUrls: ['./add-todo.component.css']
+  selector: 'app-add-event',
+  templateUrl: './add-event.component.html',
+  styleUrls: ['./add-event.component.css']
 })
-export class AddTodoComponent implements OnInit {
-  todoForm: FormGroup;
+export class AddEventComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<AddTodoComponent>,
+  eventForm: FormGroup;
+
+  constructor(public dialogRef: MatDialogRef<AddEventComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) {
       this.createForm();
      }
      createForm() {
-       this.todoForm = this.fb.group({
+       this.eventForm = this.fb.group({
          title: ['', Validators.required],
          date: '',
          description: ''
        });
      }
 
-     saveTodo() {
-       if(this.todoForm.valid) {
-        this.todoForm.value.date = (this.todoForm.value.date != '')? this.todoForm.value.date : '10/10/2040';
-        this.dialogRef.close(this.todoForm.value);
-       }
+     saveEvent() {
+       if(this.eventForm.valid)
+       this.dialogRef.close(this.eventForm.value);
      }
 
   ngOnInit() {

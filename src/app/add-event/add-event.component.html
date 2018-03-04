@@ -1,12 +1,12 @@
-<h2 mat-dialog-title>Add Todo</h2>
+<h2 mat-dialog-title>Add Event</h2>
 <mat-dialog-content>
-    <form [formGroup]="todoForm">
+    <form [formGroup]="eventForm">
     <div class="flex-container col">
           <mat-form-field>
-              <input matInput type="text" formControlName="title" placeholder="What do you need to do?">
+              <input matInput type="text" formControlName="title" placeholder="What happened? (IE Recieved job offer from...)">
             </mat-form-field>
               <mat-form-field>
-                    <input matInput formControlName="date" [matDatepicker]="picker" placeholder="Date due?">
+                    <input matInput formControlName="date" [matDatepicker]="picker" placeholder="When did it happen?">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
@@ -19,5 +19,5 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button (click)="saveTodo()">Save</button>
+    <button mat-button class="ml-auto" (click) = "saveEvent()">Save</button>
 </mat-dialog-actions>

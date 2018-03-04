@@ -8,6 +8,7 @@ import { JobService } from '../job.service';
 import 'rxjs/add/observable/of';
 import { Subscription } from 'rxjs/Subscription';
 import { Company } from '../models/company';
+import { SlicePipe } from '@angular/common';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class AddJobComponent implements OnInit {
   job: Job = new Job();
   suggestCompanies: Observable<Job[]>;
   companies: Company[];
+  titles;
   constructor(private jS: JobService, public dialogRef: MatDialogRef<AddJobComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) {
       this.createForm();
@@ -41,7 +43,7 @@ export class AddJobComponent implements OnInit {
           this.companies = [];
         }
         else {
-          this.jS.autoCompleteCompanies(term).subscribe(res => this.companies = res)
+          this.jS.autoCompleteCompanies(term).subscribe(res => this.companies = res);
         }
       });
   }

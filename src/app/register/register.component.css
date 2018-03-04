@@ -1,7 +1,10 @@
 .flex-container.main {
     background: dodgerblue;
     padding-top: 64px;
+    justify-content: center;
+    text-align: center;
 }
+
 .loginCard {
     margin-left: auto;
     margin-right: auto;
@@ -11,6 +14,12 @@
 button {
     background: dodgerblue;
     color: white;
+}
+.main h1 {
+    color: white;
+    font-family: "Lobster", cursive;
+    margin-bottom: 32px;
+    font-weight: 300;
 }
 #register {
     margin-top: auto;

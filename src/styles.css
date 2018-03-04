@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-html{
+@import '~font-awesome/css/font-awesome.css';
+html {
+    width: 100%;
     height: 100%;
 }
 body {
@@ -9,6 +11,12 @@ body {
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    
+}
+
+div {
+    box-sizing: border-box;
 }
 * {
     margin: 0;
@@ -16,6 +24,13 @@ body {
 }
 h2 {
     color: dodgerblue;
+}
+
+.spinner {
+    position: fixed !important;
+    width: 100%;
+    height: 10px;
+    bottom: 0%;
 }
 .main-container {
     background: #E8E8E8;
@@ -25,9 +40,26 @@ h2 {
     margin-top: 0;
     margin-bottom: 0;
     padding: 24px;
-    height: 100%;
 }
-
+.elevation-6 {
+    top: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+-webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+z-index: 6;
+}
+.red {
+    font-weight: 400;
+    color: red !important;
+}
+.strike-through {
+    text-decoration: line-through;
+    color: grey;
+}
 button.blue {
     background: dodgerblue;
     color: white;
@@ -50,7 +82,7 @@ ul {
     color: white;
 }
 .ml-auto {
-    margin-left: auto;
+    margin-left: auto !important;
 }
 
 .flex-container {

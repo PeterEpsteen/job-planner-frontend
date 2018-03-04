@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Add Contact</h2>
+<mat-dialog-content>
+    <form [formGroup]="contactForm">
+    <div class="flex-container col">
+          <mat-form-field>
+              <input matInput type="text" formControlName="name" placeholder="Name">
+            </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName="title" placeholder="Contact's title (IE Hiring Manager)">
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput type ="email" formControlName="email" placeholder="Email">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="tel" formControlName="phone" placeholder="Phone">
+                  </mat-form-field>
+      </div>
+    </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button class="ml-auto" (click)="saveContact()">Save</button>
+</mat-dialog-actions>

@@ -1,0 +1,79 @@
+.jumbotron {
+    box-sizing: border-box;
+    padding-left: 32px;
+    padding-right: 32px;
+    height: 300px;
+    width: 100%;
+    background-color: dodgerblue;
+}
+
+.jumbotron > div {
+    display: flex;
+    margin: auto;
+    max-width: 1200px;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+} 
+
+.jumbotron button {
+    margin-top: 16px;
+    padding: 8px 32px 8px 32px;
+    font-size: 1.5em;
+    background: black;
+    color: white;
+}
+
+.jumbotron h1 {
+    color: white;
+    max-width: 400px;
+    font-size: 3em;
+}
+h2 {
+    color: black;
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+.main p:nth-child(1) {
+    font-size: 2rem;
+    margin-bottom: 32px;
+    max-width: 600px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+h4 + p {
+    line-height: 1.5;
+    margin-bottom: 32px;
+}
+.flex-container {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-right: 16px;
+    padding-left: 16px;
+    padding-top: 40px;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+@media (min-width: 600px) {
+    .row > .col {
+        width: 30%;
+    }
+}
+.body {
+    min-height: 100%;
+    width: 100%;
+    background: white;
+}

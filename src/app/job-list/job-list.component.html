@@ -1,46 +1,60 @@
-<div class="navbar">
-    <div class="row">
-      <ul class="top-bar">
-        <li id="logo">My Gigs</li>
-      </ul>
-    </div>
+<mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div class="row navbar">
+  <ul class="top-bar">
+    <li>My Gigs</li>
+    <li class="ml-auto">
+      <button class="blue" mat-button (click)="addJob()">Add</button>
+    </li>
+    <li>
+      <button mat-button (click)="listView()">{{viewSetting}}</button>
+    </li>
+  </ul>
 </div>
 <div class="main-container">
-  <div class="row">
-      <ul class="top-bar">
-          <li class="ml-auto"><button class="blue" mat-raised-button (click)="addJob()">Add</button></li>
-          <li><button mat-raised-button>Recent</button></li>
-          <li><button mat-raised-button>Other</button></li>
-          <li><button mat-raised-button (click)="listView()">{{viewSetting}}</button></li>
-        </ul>
-  </div>
-    <ul class="jobList" [class.list]="list === true">
-      <li *ngFor="let job of jobs" (click)="openDetails(job)">
-          <mat-card class="jobCard">
-            <div class="row">
-                <div class="col">
-                    <img *ngIf="job.companyDomain" mat-card-avatar src="{{job.companyDomain}}">
-                    <div *ngIf="!job.companyDomain" class="noLogo {{randomColor}}">
-                      {{job.company.charAt(0)}}
-                    </div>
-                </div>
-                <div class="col content">
-                    <h2>{{job.company}}</h2>
-                    <p>{{job.title}}</p>
-                    <ul class="job-stats">
-                      <li>
-                        Contacts: {{job.contacts.length}}
-                      </li>
-                      <li>
-                          Events: {{job.events.length}}
-                      </li>
-                      <li>
-                          Tasks: {{job.todos.length}}
-                      </li>
-                    </ul>
-                </div>
+  <ul class="jobList" [class.list]="list === true">
+    <li *ngFor="let job of jobs" (click)="openDetails(job)">
+      <mat-card class="jobCard">
+        <div class="row">
+          <div class="col">
+            <img *ngIf="job.companyDomain" mat-card-avatar src="{{job.companyDomain}}">
+            <div *ngIf="!job.companyDomain" class="noLogo {{randomColor}}">
+              {{job.company.charAt(0)}}
             </div>
-            </mat-card>
-      </li>
-    </ul>
+          </div>
+          <div class="col content">
+            <h2>{{job.company}}</h2>
+            <h3>{{job.title}}</h3>
+            <mat-divider [inset]="true" class="divider"></mat-divider>            
+            <ul class="job-stats">
+              <li>
+                Tasks: {{job.todos.length}}
+              </li>
+              <li>
+                Contacts: {{job.contacts.length}}
+              </li>
+              <li>
+                Events: {{job.events.length}}
+              </li>
+
+            </ul>
+            <span *ngIf="getNearestTask(job)">
+                    <mat-divider [inset]="true"></mat-divider>
+                    <div  class="row">
+                        <div class="col">
+                                    <h5>Upcoming Task</h5>
+                                <p>{{getNearestTask(job).title}}</p>
+                                <span>Due: {{getNearestTask(job).date | date}}</span>
+                        </div>
+                    </div>
+            </span>
+            
+          </div>
+        </div>
+      </mat-card>
+    </li>
+  </ul>
+</div>
+
+<div class="fixed-action-button">
+  <a (click)="addJob()">Add Job</a>
 </div>

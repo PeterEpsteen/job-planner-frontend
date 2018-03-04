@@ -53,6 +53,9 @@ import {
 } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { AddTodoComponent } from './add-todo/add-todo.component';
+import { AddEventComponent } from './add-event/add-event.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 
 const routes: Routes = [
@@ -60,7 +63,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'jobs', component: JobListComponent, canActivate: [AuthGaurdService]},
   {path: 'job/:id', component: JobDetailComponent, canActivate: [AuthGaurdService]},
-  {path: '**', redirectTo: 'jobs'}
+  {path: 'about', component: AboutPageComponent},
+  {path: '**', redirectTo: 'about'}
 ];
 
 @NgModule({
@@ -72,7 +76,10 @@ const routes: Routes = [
     HeaderComponent,
     RegisterComponent,
     AddJobComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    AddEventComponent,
+    AddContactComponent,
+    AboutPageComponent
   ],
   imports: [
     BrowserModule,
@@ -86,9 +93,15 @@ const routes: Routes = [
     MatInputModule,
     MatDividerModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
-  entryComponents: [JobDetailComponent, AddJobComponent, AddTodoComponent],
+  entryComponents: [JobDetailComponent, AddJobComponent, AddTodoComponent, AddContactComponent, AddEventComponent],
   providers: [CookieService, JobService, ,AuthGaurdService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
