@@ -3,4 +3,5 @@ export class Todo {
     title: string;
     date: string;
     complete: string;
+    jobId: number;
 }

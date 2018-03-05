@@ -56,6 +56,7 @@ import { AddTodoComponent } from './add-todo/add-todo.component';
 import { AddEventComponent } from './add-event/add-event.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,7 @@ const routes: Routes = [
   {path: 'jobs', component: JobListComponent, canActivate: [AuthGaurdService]},
   {path: 'job/:id', component: JobDetailComponent, canActivate: [AuthGaurdService]},
   {path: 'about', component: AboutPageComponent},
+  {path: 'calendar', component: CalendarComponent},
   {path: '**', redirectTo: 'about'}
 ];
 
@@ -79,7 +81,8 @@ const routes: Routes = [
     AddTodoComponent,
     AddEventComponent,
     AddContactComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,

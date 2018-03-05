@@ -51,7 +51,36 @@ export class JobService {
     );
   }
 
- 
+ taskHere(jobs: Job[], date: Date): Todo[] {
+   let returnTodo = [];
+    jobs.forEach((job) => {
+      job.todos.forEach((todo) => {
+        let todoDate = new Date(todo.date);
+        if (todoDate.getDate() == date.getDate() &&
+            todoDate.getMonth() == date.getMonth() &&
+            todoDate.getFullYear() == date.getFullYear()) {
+              todo.jobId = job.id;
+               returnTodo.push(todo);
+            }
+      });
+    });
+    return returnTodo;
+ }
+ eventHere(jobs: Job[], date: Date): EventModel[] {
+  let returnTodo = [];
+   jobs.forEach((job) => {
+     job.events.forEach((todo) => {
+       let todoDate = new Date(todo.date);
+       if (todoDate.getDate() == date.getDate() &&
+           todoDate.getMonth() == date.getMonth() &&
+           todoDate.getFullYear() == date.getFullYear()) {
+             todo.jobId = job.id;
+              returnTodo.push(todo);
+           }
+     });
+   });
+   return returnTodo;
+}
 
   getJob(id: number) {
     return this.http.get<Job>(`http://localhost:8080/jobs/${id}`, {headers: {'x-access-token': localStorage.getItem('token')}})

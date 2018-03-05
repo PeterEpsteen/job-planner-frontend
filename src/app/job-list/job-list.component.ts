@@ -61,9 +61,11 @@ export class JobListComponent implements OnInit {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.newJob = result;
-      this.addJobToServer();
+      if(result != undefined) {
+        this.newJob = result;
+        this.newJob.dateAdded = new Date(Date.now()).toDateString();
+        this.addJobToServer();
+        }
     });
   }
   getRandomColor(): string {

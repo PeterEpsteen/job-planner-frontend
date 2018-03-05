@@ -12,6 +12,7 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginFailed: boolean;
   loginInfo: Login = {
     username: "",
     password: ""
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.loginInfo) 
     .subscribe(user => {
       this.router.navigateByUrl("/jobs");
-    });
+    }, error => {this.loginFailed = true;});
   }
   logout(): void {
     this.userService.logout();

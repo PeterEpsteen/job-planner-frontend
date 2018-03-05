@@ -6,6 +6,10 @@
                         <mat-card class="loginCard">
                                 <mat-card-content class="cardContent">
                                     <div class="flex-container col">
+                                                <h3 class="red" *ngIf="loginFailed" >
+                                                Login Failed
+
+                                                </h3>
                                                     <h3>Login to your account</h3>
                                                             <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="username">
                                                             <input name="password" type="password" [(ngModel)]="loginInfo.password" placeholder="password">

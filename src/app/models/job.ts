@@ -10,4 +10,5 @@ export class Job {
     events: EventModel[];
     todos: Todo[];
     companyDomain: string;
+    dateAdded: string;
 }

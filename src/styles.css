@@ -41,6 +41,9 @@ h2 {
     margin-bottom: 0;
     padding: 24px;
 }
+.center {
+    text-align: center;
+}
 .elevation-6 {
     top: 0;
     right: 0;
