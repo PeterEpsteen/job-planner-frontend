@@ -49,6 +49,7 @@
 }
 .mat-card > .row {
     padding-right: 32px;
+    flex-wrap: wrap;
 }
 
 .body {

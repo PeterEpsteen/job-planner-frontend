@@ -1,5 +1,7 @@
 <mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
-
+<div *ngIf="serverError" class="error">
+  <p>There seems to be an issue with our servers. Please try logging back in, or trying again later.</p>
+</div>
 <div *ngIf="user">
 <div class="navbar">
   <span>Profile Details</span>

@@ -5,6 +5,9 @@
       <li id="logo">Gig details</li>
       <li class="ml-auto"><button mat-button (click)="deleteJob()">Delete Job</button></li>
     </ul>
+    <div *ngIf="serverError" class="error">
+      <p>There seems to be an issue with our servers. Please try logging back in, or trying again later.</p>
+    </div>
     <div class="row title-row">
                 
         <div class="col">

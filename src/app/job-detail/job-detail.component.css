@@ -5,7 +5,7 @@
     min-height: 100%;
 }
 
-ul button {
+.top-bar button {
     margin-right: 32px;
     color: white;
 }

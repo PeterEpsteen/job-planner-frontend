@@ -9,6 +9,7 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  serverError: boolean;
   loginError: boolean;
   passwordMismatch: boolean;
   passwordInvalid: boolean;
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit {
     this.passwordInvalid = false;
     this.userService.details().subscribe(user => {this.user = user;
     this.isLoading = false;},
-        error => {console.log(error);});
+        error => {this.serverError = true});
   }
 
   editUser() {

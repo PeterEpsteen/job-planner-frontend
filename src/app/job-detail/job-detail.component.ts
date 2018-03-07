@@ -21,6 +21,7 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./job-detail.component.css']
 })
 export class JobDetailComponent implements OnInit {
+  serverError: boolean;
   isLoading: boolean;
   inProgressTodos: Todo[];
   completeTodos: Todo[];
@@ -31,9 +32,12 @@ export class JobDetailComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.serverError = false;
     this.isLoading = true;
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.jobService.getJob(id).subscribe(job => {this.job = job; this.initializeJob();});
+    this.jobService.getJob(id).subscribe(job => {
+      this.job = job; this.initializeJob();
+    }, err => {this.serverError = true;});
   }
 
   initializeJob(): void {
@@ -110,13 +114,23 @@ dateValid(todo: Todo): boolean {
   deleteContact(id: number) {
     this.isLoading = true;
 
-    this.jobService.deleteContact(id).subscribe(res => {this.ngOnInit()});
+    this.jobService.deleteContact(id).subscribe(res => {
+      this.ngOnInit()
+      this.snackbar.open("Contact deleted", null, {
+        duration: 2000
+      });
+    });
   }
 
   deleteEvent(id: number) {
     this.isLoading = true;
 
-    this.jobService.deleteEvent(id).subscribe(res => {this.ngOnInit();});
+    this.jobService.deleteEvent(id).subscribe(res => {
+      this.ngOnInit();
+      this.snackbar.open("Event Deleted", null, {
+        duration: 2000
+      });
+    });
   }
 
   deleteJob() {
@@ -129,17 +143,16 @@ dateValid(todo: Todo): boolean {
         this.snackbar.open("Job Deleted", null, {
           duration: 2000
         });
-      }, error => {alert("Error deleting job. Error: " + error)});
+      }, error => {this.serverError = true;});
     });
     
   }
 
   checkTodo(e, todo: Todo) {
-    
-      //update backend that it's checked
-      
       todo.complete = (todo.complete == 'true')? 'false' : 'true';
-      this.jobService.updateTodo(todo).subscribe(res => {console.log(res); this.ngOnInit();});
+      this.jobService.updateTodo(todo).subscribe(res => {
+        this.ngOnInit();
+      }, error => {this.serverError = true});
 
     console.log(todo);
 
@@ -148,7 +161,12 @@ dateValid(todo: Todo): boolean {
 
   deleteTodo(id: number) {
     this.isLoading = true;
-    this.jobService.deleteTodo(id).subscribe(res => {this.ngOnInit();});
+    this.jobService.deleteTodo(id).subscribe(res => {
+      this.ngOnInit();
+      this.snackbar.open("Task Deleted", null, {
+        duration: 2000
+      });
+    }, error => {this.serverError = true;});
   }
 
 }

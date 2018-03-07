@@ -9,6 +9,7 @@ import { Job } from '../models/job';
 })
 export class CalendarComponent implements OnInit {
   isLoading = true;
+  serverError: boolean;
   detailsDate: Date;
   jobs: Job[];
   days: number;
@@ -24,9 +25,13 @@ export class CalendarComponent implements OnInit {
   constructor(private jobService: JobService) { }
 
   ngOnInit() {
+    this.serverError = false;
     this.isLoading = true;
-    this.jobService.getJobs().subscribe(jobs => {this.jobs = jobs;
-    this.isLoading = false;});
+    this.jobService.getJobs().subscribe(jobs => {
+      this.jobs = jobs;
+      this.isLoading = false;
+    },
+        error => {this.serverError = true;});
     let currentMonth = this.month+1;
     let currentYear = this.year;
     this.days = this.daysInMonth(currentMonth, currentYear);
