@@ -21,9 +21,9 @@ responseType: 'text' })
 
 @Injectable()
 export class UserService {
-  private loginUrl = 'http://www.api.mygigjournal.com/users/login';
-  private registerUrl = 'http://www.api.mygigjournal.com/users/sign-up';
-  private detailsUrl = 'http://www.api.mygigjournal.com/users/details';
+  private loginUrl = 'https://www.api.mygigjournal.com/users/login';
+  private registerUrl = 'https://www.api.mygigjournal.com/users/sign-up';
+  private detailsUrl = 'https://www.api.mygigjournal.com/users/details';
   token: string;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
@@ -38,7 +38,7 @@ export class UserService {
     this.router.navigateByUrl("/login");
   }
   editUser(user: User): Observable<User> {
-      return this.http.put(`http://www.api.mygigjournal.com/users/${user.id}`,
+      return this.http.put(`https://www.api.mygigjournal.com/users/${user.id}`,
               user, {headers: {'x-access-token': localStorage.getItem('token')}})
               .pipe(catchError(this.handleError<any>('editUser')));
   }

@@ -11,6 +11,8 @@ import { AddEventComponent } from '../add-event/add-event.component';
 import { EventModel } from '../models/event';
 import { AddContactComponent } from '../add-contact/add-contact.component';
 import { Contact } from '../models/contact';
+import {MatSnackBar} from '@angular/material';
+
 
 
 @Component({
@@ -25,7 +27,7 @@ export class JobDetailComponent implements OnInit {
   events: EventModel[];
   job: Job;
   contacts: Contact[];
-  constructor(public dialog: MatDialog, private route: ActivatedRoute, private router: Router, private jobService: JobService) { 
+  constructor(public snackbar: MatSnackBar, public dialog: MatDialog, private route: ActivatedRoute, private router: Router, private jobService: JobService) { 
     }
 
   ngOnInit() {
@@ -115,6 +117,21 @@ dateValid(todo: Todo): boolean {
     this.isLoading = true;
 
     this.jobService.deleteEvent(id).subscribe(res => {this.ngOnInit();});
+  }
+
+  deleteJob() {
+    let snackbarRef = this.snackbar.open("Are you sure you want to delete this job?", "Yes", {
+      duration: 4000,
+    });
+    snackbarRef.onAction().subscribe(() => {
+      this.jobService.deleteJob(this.job.id).subscribe(success => {
+        this.router.navigateByUrl("/jobs");
+        this.snackbar.open("Job Deleted", null, {
+          duration: 2000
+        });
+      }, error => {alert("Error deleting job. Error: " + error)});
+    });
+    
   }
 
   checkTodo(e, todo: Todo) {
