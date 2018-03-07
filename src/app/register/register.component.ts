@@ -14,6 +14,8 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  registerFailed: boolean;
+  serverError: boolean;
   confirmPassword: String;
   loginInfo: Login = new Login;
   token: string;
@@ -23,14 +25,16 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     if (this.loginInfo.password != this.confirmPassword) {
-      alert("Passwords do not match");
+      this.registerFailed = true;
     }
     else {
+      this.registerFailed = false;
       this.userService.register(this.loginInfo)
       .subscribe(body => {
         console.log("Registered");
         this.router.navigateByUrl('/login');
-      });
+      },
+    error => {this.serverError = true});
     }
   }
 

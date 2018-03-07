@@ -17,7 +17,7 @@ export class AddContactComponent implements OnInit {
      }
      createForm() {
        this.contactForm = this.fb.group({
-         name: '',
+         name: ['', Validators.required],
          title: '',
          email: '',
          phone: ''
@@ -25,9 +25,10 @@ export class AddContactComponent implements OnInit {
      }
 
      saveContact() {
-       console.log(this.contactForm.value)
+       if(this.contactForm.valid) {
        this.dialogRef.close(this.contactForm.value);
-     }
+       }
+    }
 
   ngOnInit() {
   }

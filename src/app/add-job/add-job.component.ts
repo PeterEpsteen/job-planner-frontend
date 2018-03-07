@@ -55,7 +55,6 @@ export class AddJobComponent implements OnInit {
 
   addJob() {
     this.job = this.companyForm.value;
-    console.log(this.job);
     this.dialogRef.close(this.job);
   }
 

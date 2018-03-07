@@ -1,17 +1,42 @@
 
 .body {
-    background-color: #fafafa;
+    background-color: #EEEEEE;
     width: 100%;
     min-height: 100%;
 }
 
 .main-container {
     max-width: 1200px;
-    background: #fafafa;
+    background: #EEEEEE;
 }
+.title-row {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+.title-row .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 32px;
+}
+.strike-through .mat-checkbox-background {
+    background-color: red !important;
+}
+.title-row .col h2 {
+    font-size: 48px;
+    font-weight: 400;
+    color: white;
+}
+.title-row .col p{
+    font-size: 24px;
+    font-weight: 300;
+    color: #CCCCCC;
+}
+
 .mat-card-avatar {
-    height: 64px;
-    width: 64px;
+    height: 72px;
+    width: 72px;
     border-radius: 50%;
 }
 div.row {
@@ -29,13 +54,16 @@ div.row {
 }
 
 .noLogo {
-    height: 50px;
-    width: 50px;
+    height: 72px;
+    width: 72px;
     color: white;
-    background-color: firebrick;
+    background-color: #6A1B9A;
     border-radius: 50%;
     text-align: center;
-    font-size: 2rem;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .top-bar {
@@ -75,8 +103,8 @@ h3 {
     flex-grow: 0 !important;
 }
 .navbar {
-    height: 72px;
-    background: dodgerblue;
+    min-height: 72px;
+    background: #303030;
 }
 .mat-divider.divider {
     margin-top: 16px !important;

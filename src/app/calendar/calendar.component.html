@@ -1,83 +1,95 @@
-<div *ngIf="jobs" class="main-container">
-
-  <div class="row main">
-    <div class="col">
-      <mat-card class="task-details">
-        <div class="col">
-          <div *ngIf="detailsDate">
-             <div class="row">
-                <h2>{{detailsDate | date:'d'}}</h2>
-                <div class="col" id="date-col">
-                  <h3>{{detailsDate | date:'EEEE'}}</h3>
-                  <h3>{{detailsDate | date:'MMMM'}}</h3> 
-                </div>
-                  
-             </div>
-             <h3>Tasks</h3>
-             <ul>
-               <!--TODO: Link to job/id -->
-                <li *ngFor="let task of taskHere(detailsDate)">
-                    <a [routerLink]="['/job', task.jobId]">
-                      <h3>{{task.title}}</h3>
-                      <p *ngIf="task.description">{{task.description}}</p>
-                    </a>
-                </li>
-             </ul>
-             <h3 class="center" *ngIf="taskHere(detailsDate).length < 1">
-              No tasks today
-             </h3>
-             <h3>Events</h3>
-             <ul>
-                <!--TODO: Link to job/id -->
-                 <li *ngFor="let event of eventHere(detailsDate)">
-                     <a [routerLink]="['/job', event.jobId]">
-                       <h3>{{event.title}}</h3>
-                       <p *ngIf="event.description">{{event.description}}</p>
-                     </a>
-                 </li>
-              </ul>
-              <h3 class="center" *ngIf="eventHere(detailsDate).length < 1">
-               No Events today
-              </h3>
-             
-          </div>
-          
-          
-        </div>
-      </mat-card>
-    </div>
-    <div class="col">
-        <mat-card>
-            <div class="row month-row">
-              <button (click)="monthDecrease()" mat-button > < </button>
-                <h1>{{monthName}}</h1>
-                <button (click)="monthIncrease()" mat-button> > </button>
-            </div>
-            
-            <table>
-              <tbody>
-                <tr *ngFor="let week of weekCount">
-                  <td *ngFor="let day of dayCount" (click)="setDetails(week, day)"
-                      [ngClass]="{'selected': isDateSelected(week, day)}" >
-                    <p [ngClass]="{'grey': dateInRange(week, day)}">
-                      {{getDateDay(week, day)}}</p>
-                      <div class="task-row">
-                         <!-- <a [routerLink]="['/job', task.jobId]">
-                          {{task.title}}
-                          {{task.id}}
-                        </a> -->
-                        <div *ngFor="let task of taskHere(getDate(week, day))" class="task-dot"></div>
-                        <div *ngFor="let event of eventHere(getDate(week, day))" class="task-dot"></div>
-                      </div>
-                    
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </mat-card>
-    </div>
-  </div>
-
-  
+<mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div class="navbar">
+    <ul class="top-bar">
+      <li id="logo">Calendar</li>
+    </ul>
 </div>
+<div class="body">
+    <div *ngIf="jobs" class="main-container">
 
+        <div class="row main">
+          <div class="col">
+            <mat-card class="task-details top mat-elevation-z12">
+              <div class="col">
+                <div *ngIf="detailsDate">
+                   <div class="row detail-date">
+                      <h2>{{detailsDate | date:'d'}}</h2>
+                      <div class="col" id="date-col">
+                        <h3>{{detailsDate | date:'MMMM'}}</h3>
+                        <h3>{{detailsDate | date:'EEEE'}}</h3> 
+                      </div>
+                        
+                   </div>
+                   <h3>Tasks:</h3>
+                   <h3 *ngIf="taskHere(detailsDate).length < 1">
+                      No tasks today
+                     </h3>
+                   <ul class="tasks">
+                     <!--TODO: Link to job/id -->
+                      <li *ngFor="let task of taskHere(detailsDate)">
+                          <a [routerLink]="['/job', task.jobId]">
+                            <h3>{{task.title}}</h3>
+                            <p *ngIf="task.description">{{task.description}}</p>
+                          </a>
+                      </li>
+                   </ul>
+                   
+                   <h3>Events:</h3>
+                   <h3  *ngIf="eventHere(detailsDate).length < 1">
+                      No Events today
+                     </h3>
+                   <ul class="events">
+                      <!--TODO: Link to job/id -->
+                       <li *ngFor="let event of eventHere(detailsDate)">
+                           <a [routerLink]="['/job', event.jobId]">
+                             <h3>{{event.title}}</h3>
+                             <p *ngIf="event.description">{{event.description}}</p>
+                           </a>
+                       </li>
+                    </ul>
+                   
+                   
+                </div>
+                
+                
+              </div>
+            </mat-card>
+          </div>
+          <div class="col">
+              <mat-card>
+                  <div class="row month-row">
+                    <button (click)="monthDecrease()" mat-button > < </button>
+                      <h1>{{monthName}}</h1>
+                      <button (click)="monthIncrease()" mat-button> > </button>
+                  </div>
+                  
+                  <table>
+                    <tbody>
+                      <tr *ngFor="let week of weekCount">
+                        <td *ngFor="let day of dayCount" (click)="setDetails(week, day)"
+                            [ngClass]="{'selected': isDateSelected(week, day)}" >
+                          <p [ngClass]="{'grey': dateInRange(week, day)}">
+                            {{getDateDay(week, day)}}</p>
+                            <div class="task-row">
+                               <!-- <a [routerLink]="['/job', task.jobId]">
+                                {{task.title}}
+                                {{task.id}}
+                              </a> -->
+                              <div *ngFor="let task of taskHere(getDate(week, day))" class="task-dot"></div>
+                              <div *ngFor="let event of eventHere(getDate(week, day))" class="task-dot green"></div>
+                            </div>
+                          
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </mat-card>
+          </div>
+        </div>
+      
+        
+      </div>
+      
+      
+
+</div>

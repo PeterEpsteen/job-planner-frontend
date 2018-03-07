@@ -1,18 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import '~font-awesome/css/font-awesome.css';
 html {
     width: 100%;
     height: 100%;
 }
 body {
-    background-color: #E8E8E8;
+    background-color: #303030;
     margin: 0;
     height: 100%;
     width: 100%;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
-    
 }
 
 div {
@@ -23,23 +21,26 @@ div {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 h2 {
-    color: dodgerblue;
+    color: black;
 }
 
 .spinner {
     position: fixed !important;
     width: 100%;
-    height: 10px;
-    bottom: 0%;
+    height: 8px;
+    top: 72px;
 }
 .main-container {
-    background: #E8E8E8;
-    max-width: 1400px;
+    background: #fafafa;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 0;
     margin-bottom: 0;
     padding: 24px;
+}
+.mat-snackbar-container {
+    background-color: #6A1B9A;
 }
 .center {
     text-align: center;
@@ -57,21 +58,18 @@ z-index: 6;
 }
 .red {
     font-weight: 400;
-    color: red !important;
+    color: #e74c3c !important;
 }
 .strike-through {
     text-decoration: line-through;
     color: grey;
 }
 button.blue {
-    background: dodgerblue;
+    background: #6A1B9A;
     color: white;
 }
 
-.navbar {
-    height: 72px;
-    background: dodgerblue;
-}
+
 
 
 

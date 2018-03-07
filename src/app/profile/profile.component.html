@@ -1,0 +1,86 @@
+<mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+<div *ngIf="user">
+<div class="navbar">
+  <span>Profile Details</span>
+  <span>{{user.username}}</span>
+</div>
+<div class="body">
+  <div class="main-container">
+    <h1>{{user.username}}'s details</h1>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row">
+      <div class="col">
+        <i class="far fa-2x fa-address-book"></i>
+      </div>
+      <div class="col">
+        <div class="row">
+          <div>
+            <h4>Username</h4>
+            <p>{{user.username}}</p>
+          </div>
+          <div>
+            <h4>Name</h4>
+            <p *ngIf="user.firstName">{{user.firstName +' '+ user.lastName}}</p>
+            <p *ngIf="user.firstName == null">No name provided.</p>
+          </div>
+          <div>
+            <h4>Email</h4>
+            <p>{{user.email || 'No email provided'}}</p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <h1>Edit Profile</h1>
+    <mat-divider class="divider"></mat-divider>
+    <div class="row">
+      <div class="col">
+        <i class="far fa-2x fa-edit"></i>
+      </div>
+      <div class="col">
+        <form [formGroup]="editUserForm">
+            <label for="currentPassword">
+                <h4>Current Password</h4>
+              </label>
+              <input type="password" formControlName="currentPassword" placeholder="Enter current Password">
+              <div class="red" *ngIf="loginError">Please enter your correct password.</div>
+          <label for="username">
+            <h4>Username</h4>
+          </label>
+          <input type="text" formControlName="username" placeholder="Enter new username">
+
+          <label for="firstName">
+            <h4>First Name</h4>
+          </label>
+          <input type="text" formControlName="firstName" placeholder="Enter first name (optional)">
+
+          <label for="name">
+              <h4>Last Name</h4>
+            </label>
+            <input type="text" formControlName="lastName" placeholder="Enter last name (optional)">
+
+          <label for="email">
+            <h4>Email</h4>
+          </label>
+          <input type="text" formControlName="email" placeholder="Enter email (optional)">
+         
+          <label for="password">
+            <h4>New Password</h4>
+          </label>
+          <input type="password" formControlName="password" placeholder="Enter new Password">
+          <label for="confirmPassword">
+            <h4>Confirm Password</h4>
+          </label>
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+          <div class="red" *ngIf="passwordMismatch">Passwords do not match.</div>
+          <div class="red" *ngIf="passwordInvalid">Please enter a password at least 8 characters long.</div>
+
+        </form>
+        <button mat-button (click)="editUser()" class="blue ml-auto">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

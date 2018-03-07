@@ -57,15 +57,17 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'jobs', component: JobListComponent, canActivate: [AuthGaurdService]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGaurdService]},
   {path: 'job/:id', component: JobDetailComponent, canActivate: [AuthGaurdService]},
   {path: 'about', component: AboutPageComponent},
-  {path: 'calendar', component: CalendarComponent},
+  {path: 'calendar', component: CalendarComponent, canActivate: [AuthGaurdService]},
   {path: '**', redirectTo: 'about'}
 ];
 
@@ -82,7 +84,8 @@ const routes: Routes = [
     AddEventComponent,
     AddContactComponent,
     AboutPageComponent,
-    CalendarComponent
+    CalendarComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -102,10 +105,11 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
   entryComponents: [JobDetailComponent, AddJobComponent, AddTodoComponent, AddContactComponent, AddEventComponent],
-  providers: [CookieService, JobService, ,AuthGaurdService, AuthService, UserService],
+  providers: [CookieService, JobService, AuthGaurdService, AuthService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

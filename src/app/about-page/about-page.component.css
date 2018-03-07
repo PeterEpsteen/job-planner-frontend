@@ -4,7 +4,7 @@
     padding-right: 32px;
     height: 300px;
     width: 100%;
-    background-color: dodgerblue;
+    background-color: #303030;
 }
 
 .jumbotron > div {
@@ -21,14 +21,14 @@
     margin-top: 16px;
     padding: 8px 32px 8px 32px;
     font-size: 1.5em;
-    background: black;
+    background: #6A1B9A;
     color: white;
 }
 
 .jumbotron h1 {
     color: white;
-    max-width: 400px;
-    font-size: 3em;
+    font-size: 4em;
+    font-weight: 400;
 }
 h2 {
     color: black;

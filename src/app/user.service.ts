@@ -21,9 +21,9 @@ responseType: 'text' })
 
 @Injectable()
 export class UserService {
-  private jobsUrl = 'http://localhost:8080/jobs/1';
-  private loginUrl = 'http://localhost:8080/users/login';
-  private registerUrl = 'http://localhost:8080/users/sign-up';
+  private loginUrl = 'http://www.api.mygigjournal.com/users/login';
+  private registerUrl = 'http://www.api.mygigjournal.com/users/sign-up';
+  private detailsUrl = 'http://www.api.mygigjournal.com/users/details';
   token: string;
 
   constructor(private http: HttpClient, private auth: AuthService, private router: Router) { }
@@ -37,21 +37,28 @@ export class UserService {
     this.auth.changeLogin();
     this.router.navigateByUrl("/login");
   }
+  editUser(user: User): Observable<User> {
+      return this.http.put(`http://www.api.mygigjournal.com/users/${user.id}`,
+              user, {headers: {'x-access-token': localStorage.getItem('token')}})
+              .pipe(catchError(this.handleError<any>('editUser')));
+  }
   login(login: Login): Observable<User> {
     return this.http.post<User>(this.loginUrl, login, httpOptions ).pipe(
       tap(res => {this.setToken(res.token)}),
       catchError(this.handleError<User>('login')),
     );
   }
-  register(login: Login): Observable<any> {
-    return this.http.post<any>(this.registerUrl, login, httpOptions )
-    .pipe(catchError(this.handleError<any>('register')));
-    
+  register(login: Login): Observable<User> {
+    return this.http.post<User>(this.registerUrl, login, httpOptions )
+    .pipe(catchError(this.handleError<User>('register')));
+  }
+  details() : Observable<User> {
+    return this.http.get(this.detailsUrl, {headers: {'x-access-token': localStorage.getItem('token')}})
+    .pipe(catchError(this.handleError<any>('details')));
   }
 
   handleError<T> (operation = 'operation', result?: T){
     return(error: any): Observable<T> => {
-      console.error(error);
       console.log(`${operation} failed: ${error.message}`);
       return Observable.throw(error);
     };

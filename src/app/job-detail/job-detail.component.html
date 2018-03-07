@@ -1,27 +1,26 @@
 <mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
-<div class="navbar">
+<div  *ngIf="job" class="navbar">
     <ul class="top-bar">
       <li id="logo">Gig details</li>
     </ul>
-</div>
-<div class="body">
-    <div *ngIf="job" class="main-container">
-        <div class="row">
-          <div class="col">
+    <div class="row title-row">
+                
+        <div class="col">
             <img *ngIf="job.companyDomain" class="mat-card-avatar" src="{{job.companyDomain}}">
             <div *ngIf="!job.companyDomain" class="noLogo">
               {{job.company.charAt(0)}}
             </div>
-          </div>
+          <h2>{{job.company}}</h2>
+          <p *ngIf="job.title">{{job.title}}</p>
+      </div>
+      </div>
+</div>
+<div class="body">
+    <div *ngIf="job" class="main-container">
+        <div class="row">
           <div class="col content">
-            <div class="row">
-              <div class="col">
-                <h2>{{job.company}}</h2>
-              </div>
-            </div>
-  
-            <p>{{job.title}}</p>
+            
             <mat-divider class="divider"></mat-divider>
             <div class="row">
               <div class="col">

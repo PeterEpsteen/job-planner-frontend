@@ -8,6 +8,7 @@ import { Job } from '../models/job';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+  isLoading = true;
   detailsDate: Date;
   jobs: Job[];
   days: number;
@@ -23,7 +24,9 @@ export class CalendarComponent implements OnInit {
   constructor(private jobService: JobService) { }
 
   ngOnInit() {
-    this.jobService.getJobs().subscribe(jobs => this.jobs = jobs);
+    this.isLoading = true;
+    this.jobService.getJobs().subscribe(jobs => {this.jobs = jobs;
+    this.isLoading = false;});
     let currentMonth = this.month+1;
     let currentYear = this.year;
     this.days = this.daysInMonth(currentMonth, currentYear);
@@ -79,11 +82,17 @@ export class CalendarComponent implements OnInit {
   }
 
   taskHere(date: Date) {
-    return this.jobService.taskHere(this.jobs, date);
+    this.isLoading = true;
+    let returnVal = this.jobService.taskHere(this.jobs, date);
+    this.isLoading = false;
+    return returnVal;
   }
 
   eventHere(date: Date) {
-    return this.jobService.eventHere(this.jobs, date);
+    this.isLoading = true;
+    let returnVal = this.jobService.eventHere(this.jobs, date);
+    this.isLoading = false;
+    return returnVal;
   }
 
 }

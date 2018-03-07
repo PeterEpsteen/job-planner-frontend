@@ -1,5 +1,5 @@
 .flex-container.main {
-    background: dodgerblue;
+    background: #303030;
     padding-top: 64px;
     justify-content: center;
     text-align: center;
@@ -18,7 +18,7 @@
     border-radius: 5px;
 }
 button {
-    background: dodgerblue;
+    background: #303030;
     color: white;
 }
 #register {
@@ -33,7 +33,7 @@ button {
 a {
     padding-bottom: 16px;
     margin: auto;
-    color: dodgerblue;
+    color: #303030;
     text-decoration: none;
 }
 .loginCard .col {

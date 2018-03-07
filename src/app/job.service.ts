@@ -27,10 +27,10 @@ responseType: 'text' })
 
 @Injectable()
 export class JobService {
-  private jobsUrl = 'http://localhost:8080/jobs/all';
-  private loginUrl = 'http://localhost:8080/users/login';
-  private registerUrl = 'http://localhost:8080/users/sign-up';
-  private addJobsUrl = 'http://localhost:8080/jobs/add';
+  private jobsUrl = 'http://www.api.mygigjournal.com/jobs/all';
+  private loginUrl = 'http://www.api.mygigjournal.com/users/login';
+  private registerUrl = 'http://www.api.mygigjournal.com/users/sign-up';
+  private addJobsUrl = 'http://www.api.mygigjournal.com/jobs/add';
   token: string;
 
   constructor(
@@ -38,7 +38,6 @@ export class JobService {
   ) { }
 
   getJobs(): Observable<Job[]> {
-    console.log(localStorage.getItem('token'));
     return this.http.get<Job[]>(this.jobsUrl, {
       headers: {'x-access-token': localStorage.getItem('token')}
     });
@@ -83,7 +82,7 @@ export class JobService {
 }
 
   getJob(id: number) {
-    return this.http.get<Job>(`http://localhost:8080/jobs/${id}`, {headers: {'x-access-token': localStorage.getItem('token')}})
+    return this.http.get<Job>(`http://www.api.mygigjournal.com/jobs/${id}`, {headers: {'x-access-token': localStorage.getItem('token')}})
     .pipe(catchError(this.handleError<any>('getJob')));
   }
 
@@ -100,7 +99,7 @@ export class JobService {
   }
 
   addEvent(newEvent: EventModel, jobId: number): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/jobs/event/${jobId}`, newEvent,  {
+    return this.http.post<any>(`http://www.api.mygigjournal.com/jobs/event/${jobId}`, newEvent,  {
       headers: {'x-access-token': localStorage.getItem('token'), 'Content-Type': 'application/json'}
     })
     .pipe(
@@ -110,7 +109,7 @@ export class JobService {
   }
 
   addContact(newContact: Contact, jobId: number): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/jobs/contact/${jobId}`, newContact,  {
+    return this.http.post<any>(`http://www.api.mygigjournal.com/jobs/contact/${jobId}`, newContact,  {
       headers: {'x-access-token': localStorage.getItem('token'), 'Content-Type': 'application/json'}
     })
     .pipe(
@@ -120,7 +119,7 @@ export class JobService {
   }
 
   addTodo(todo: Todo, id: number): Observable<any> {
-    return this.http.post<any>(`http://localhost:8080/jobs/todo/${id}`, todo,  {
+    return this.http.post<any>(`http://www.api.mygigjournal.com/jobs/todo/${id}`, todo,  {
       headers: {'x-access-token': localStorage.getItem('token'), 'Content-Type': 'application/json'}
     })
     .pipe(
@@ -130,7 +129,7 @@ export class JobService {
   }
 
   updateTodo(todo: Todo): Observable<any> {
-    return this.http.put(`http://localhost:8080/jobs/todo`, todo, {
+    return this.http.put(`http://www.api.mygigjournal.com/jobs/todo`, todo, {
       headers: {'x-access-token': localStorage.getItem('token')}
     })
     .pipe(
@@ -139,13 +138,13 @@ export class JobService {
   }
 
   getTodos(id: number): Observable<Todo[]> {
-    return this.http.get<Todo[]>(`http://localhost:8080/jobs/todo/${id}`, {
+    return this.http.get<Todo[]>(`http://www.api.mygigjournal.com/jobs/todo/${id}`, {
       headers: {'x-access-token': localStorage.getItem('token')}
     });
   }
 
   deleteTodo(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/jobs/todo/${id}`,  {
+    return this.http.delete<any>(`http://www.api.mygigjournal.com/jobs/todo/${id}`,  {
       headers: {'x-access-token': localStorage.getItem('token')}
     })
     .pipe(
@@ -154,7 +153,7 @@ export class JobService {
     );
   }
   deleteEvent(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/jobs/event/${id}`,  {
+    return this.http.delete<any>(`http://www.api.mygigjournal.com/jobs/event/${id}`,  {
       headers: {'x-access-token': localStorage.getItem('token')}
     })
     .pipe(
@@ -163,7 +162,7 @@ export class JobService {
     );
   }
   deleteContact(id: number): Observable<any> {
-    return this.http.delete<any>(`http://localhost:8080/jobs/contact/${id}`,  {
+    return this.http.delete<any>(`http://www.api.mygigjournal.com/jobs/contact/${id}`,  {
       headers: {'x-access-token': localStorage.getItem('token')}
     })
     .pipe(
@@ -176,7 +175,7 @@ export class JobService {
     return(error: any): Observable<T> => {
       console.error(error);
       console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
+      return Observable.throw(error);
     };
   }
 

@@ -13,6 +13,7 @@ import { Todo } from '../models/todo';
   styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
+  serverError: boolean;
   isLoading: boolean;
   jobs: Job[];
   selectedJob: Job;
@@ -29,7 +30,10 @@ export class JobListComponent implements OnInit {
           .subscribe(jobs => {
             this.jobs = jobs;
             this.isLoading = false;
-          });
+            this.serverError = false;
+          },
+          error => this.serverError = true
+        );
     }
 
     sortByDate(a: Todo, b: Todo): number {

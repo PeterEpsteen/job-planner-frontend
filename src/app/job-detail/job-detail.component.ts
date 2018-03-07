@@ -71,20 +71,24 @@ dateValid(todo: Todo): boolean {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.isLoading = true;
-      console.log(result);
-      this.jobService.addTodo(result, this.job.id).subscribe(res => {this.ngOnInit()});
-    });
-  }
+      if (result != undefined) {
+        this.isLoading = true;
+        console.log(result);
+        this.jobService.addTodo(result, this.job.id).subscribe(res => {this.ngOnInit()});
+        }
+      });
+    }
 
   addEvent() {
     let dialogRef = this.dialog.open(AddEventComponent, {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.isLoading = true;
-      console.log(result);
-      this.jobService.addEvent(result, this.job.id).subscribe(res => {this.ngOnInit()});
+      if(result != undefined) {
+        this.isLoading = true;
+        console.log(result);
+        this.jobService.addEvent( result, this.job.id).subscribe(res => {this.ngOnInit()});
+        }
     });
   }
 
@@ -93,9 +97,11 @@ dateValid(todo: Todo): boolean {
       width: '400px',
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.isLoading = true;
-      console.log(result);
-      this.jobService.addContact(result, this.job.id).subscribe(res => {this.ngOnInit()});
+      if(result != undefined) {
+        this.isLoading = true;
+        console.log(result);
+        this.jobService.addContact(result, this.job.id).subscribe(res => {this.ngOnInit()});
+      }
     });
   }
 
@@ -112,20 +118,14 @@ dateValid(todo: Todo): boolean {
   }
 
   checkTodo(e, todo: Todo) {
-    if(e.checked) {
+    
       //update backend that it's checked
-      console.log('checked');
-      todo.complete = 'true';
+      
+      todo.complete = (todo.complete == 'true')? 'false' : 'true';
       this.jobService.updateTodo(todo).subscribe(res => {console.log(res); this.ngOnInit();});
-    }
-    else {
-      console.log('unchecked');
-      todo.complete = 'false';
-      this.jobService.updateTodo(todo).subscribe(res => {this.ngOnInit();});
-    }
+
     console.log(todo);
 
-    console.log(e);
     
   } 
 

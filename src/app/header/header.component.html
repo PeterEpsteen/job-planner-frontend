@@ -13,6 +13,9 @@
     <li>
         <a routerLink="/about" routerLinkActive="active">About</a>
       </li>
+      <li *ngIf="loggedIn">
+          <a routerLink="/profile" routerLinkActive>Profile</a>
+      </li>
     <li *ngIf="loggedIn">
         <button mat-button (click)="logout()">Logout</button>
       </li>
