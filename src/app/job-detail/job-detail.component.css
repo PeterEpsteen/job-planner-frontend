@@ -14,6 +14,22 @@
     max-width: 1200px;
     background: #EEEEEE;
 }
+
+@media (max-width: 600px) {
+    .content {
+        padding: 8px;
+    }
+
+    .main-container {
+         padding: 8px;
+    }
+
+    .mat-expansion-panel {
+        max-width: 100%;
+        padding: 8px 0px 8px 0px !important;
+    }
+}
+
 .title-row {
     display: flex;
     justify-content: center;
@@ -56,6 +72,7 @@ div.row {
     padding-left: 16px;
     flex: 1;
     padding-top: 8px;
+    max-width: 100%;
 }
 
 .noLogo {

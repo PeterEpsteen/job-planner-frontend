@@ -14,28 +14,63 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  shortPassword: boolean;
+  nameTaken: boolean;
   registerFailed: boolean;
+  noPassword: boolean;
   serverError: boolean;
+  shortName: boolean;
   confirmPassword: String;
-  loginInfo: Login = new Login;
+  loginInfo = {
+    username: "",
+    password: "",
+    confirmPassword: ""
+  };
   token: string;
   constructor(private router: Router, private cookieService: CookieService, private userService: 
     UserService, private auth: AuthService) { }
   
 
   register(): void {
+    this.clearErrors();
+    if(this.loginInfo.username.length < 6) {
+      this.shortName = true;
+      return;
+    }
+    if(this.loginInfo.password == "") {
+      this.noPassword = true;
+      return;
+    }
+    if(this.loginInfo.password.length < 8) {
+      this.shortPassword = true;
+      return;
+    }
     if (this.loginInfo.password != this.confirmPassword) {
       this.registerFailed = true;
+      return;
     }
     else {
-      this.registerFailed = false;
       this.userService.register(this.loginInfo)
       .subscribe(body => {
-        console.log("Registered");
         this.router.navigateByUrl('/login');
       },
-    error => {this.serverError = true});
+      error => {
+        console.log(error)
+        if(error.status == 400) {
+          this.nameTaken = true;
+          return;
+        }
+      this.serverError = true
+    });
     }
+  }
+  clearErrors() {
+    this.shortPassword = false;
+    this.nameTaken = false;
+    this.noPassword = false;
+    this.serverError = false;
+    this.shortName = false;
+
   }
 
   

@@ -3,19 +3,75 @@
     background-color: #303030;
     font-family: 'Lobster', cursive;
     color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    transition: height 1s ease;
+}
+#mobile-menu {
+    display: none;
 }
 #logo {
     font-size: 2rem;
     font-family: 'Lobster', cursive;
     margin-right: 32px;
 }
+
+@media (max-width: 500px) {
+    #logo {
+        font-size: 1.5rem !important;
+    }
+}
 .navbar ul {
-    margin: auto;
     height: 64px;
     display: flex;
     flex-direction: row;
     align-items: center;
     box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    #mobile-menu {
+        display: inline;
+    }
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+    .navbar ul.open {
+        visibility: visible;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        align-self: start;
+        padding-bottom: 32px;
+    }
+    .navbar > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 64px;
+    }
+
+    .navbar a {
+        font-size: 18px;
+    }
+
+    .navbar li {
+        margin-top: 16px;
+    }
+   
+    .navbar ul {
+        max-width: 100%;
+        height: 0px;
+        visibility: hidden;
+    }
     
 }
 

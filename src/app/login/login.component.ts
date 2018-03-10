@@ -13,6 +13,8 @@ import {AuthService} from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   loginFailed: boolean;
+  noPassword: boolean;
+  
   loginInfo: Login = {
     username: "",
     password: ""
@@ -22,24 +24,22 @@ export class LoginComponent implements OnInit {
     UserService, private auth: AuthService) { }
 
   login(): void {
+
+    if (this.loginInfo.password == "") {
+      this.noPassword = true;
+      return;
+    }
+    
     this.userService.login(this.loginInfo) 
     .subscribe(user => {
       this.router.navigateByUrl("/jobs");
-    }, error => {this.loginFailed = true;});
+    }, error => {
+      this.loginFailed = true;
+    });
   }
   logout(): void {
     this.userService.logout();
   }
-
-  register(): void {
-    this.userService.register(this.loginInfo)
-    .subscribe(body => {
-      console.log("Registered");
-    });
-  }
-
-  
-
   ngOnInit() {
     this.userService.logout();
   }

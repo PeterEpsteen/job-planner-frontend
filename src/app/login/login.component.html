@@ -8,13 +8,12 @@
                                     <div class="flex-container col">
                                                 <h3 class="red" *ngIf="loginFailed" >
                                                 Login Failed
-
                                                 </h3>
                                                     <h3>Login to your account</h3>
                                                             <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="username">
                                                             <input name="password" type="password" [(ngModel)]="loginInfo.password" placeholder="password">
                                                     <button mat-raised-button (click)="login()">Login</button>
-                                                    <a routerLink="/register">Register</a>
+                                                    <a routerLink="/register">Don't have an account yet? Click here!</a>
                 
                                     </div> 
                                     

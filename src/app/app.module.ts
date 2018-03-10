@@ -58,6 +58,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ProfileComponent } from './profile/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const routes: Routes = [
@@ -106,7 +107,8 @@ const routes: Routes = [
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    BrowserAnimationsModule
   ],
   entryComponents: [JobDetailComponent, AddJobComponent, AddTodoComponent, AddContactComponent, AddEventComponent],
   providers: [CookieService, JobService, AuthGaurdService, AuthService, UserService],

@@ -75,6 +75,10 @@ export class CalendarComponent implements OnInit {
     return new Date(currentYear, currentMonth, realDay);
   }
 
+  getYear(): number {
+    return this.getDate(1, 1).getFullYear();
+  }
+
   getDateDay(week, dayOfWeek): number {
     let date = this.getDate(week, dayOfWeek);
     return date.getDate();

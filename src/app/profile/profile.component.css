@@ -18,6 +18,9 @@ h1 {
 }
 .main-container {
     max-width: 800px;
+    padding-right: 32px;
+    padding-left: 32px;
+    
 }
 
 .divider {
@@ -38,9 +41,16 @@ h1 {
     font-size: 16px;
 }
 
-form > * {
-    width: 100%;
+input {
+    padding: 8px;
 }
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 .row:nth-of-type(1) > div {
     padding: 0px 16px 0px 16px;
 }

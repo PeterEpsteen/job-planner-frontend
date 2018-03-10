@@ -1,26 +1,28 @@
 
 <div class="navbar">
-  <ul>
-    <li>
+  <div>
+      <button mat-button id="mobile-menu" (click)="toggleMenu()"><i class="fas fa-2x fa-bars"></i></button>
       <a  id="logo" routerLink="/about">Gig Journal</a>  
-    </li>
-    <li class="ml-auto">
-      <a routerLink="/jobs" routerLinkActive="active">Jobs</a>
+  </div>
+  <ul [ngClass]="{'open': openMenu}">
+    <li>
+      <a routerLink="/jobs" (click)="toggleMenu()"  routerLinkActive="active">Jobs</a>
     </li>
     <li>
-      <a routerLink="/calendar" routerLinkActive="active">Calendar</a>
+      <a routerLink="/calendar" (click)="toggleMenu()" routerLinkActive="active">Calendar</a>
     </li>
     <li>
-        <a routerLink="/about" routerLinkActive="active">About</a>
+        <a routerLink="/about" (click)="toggleMenu()" routerLinkActive="active">About</a>
       </li>
       <li *ngIf="loggedIn">
-          <a routerLink="/profile" routerLinkActive>Profile</a>
+          <a routerLink="/profile" (click)="toggleMenu()" routerLinkActive>Profile</a>
       </li>
     <li *ngIf="loggedIn">
-        <button mat-button (click)="logout()">Logout</button>
+        <a routerLink="" (click)="logout()">Logout</a>
       </li>
       <li *ngIf="!loggedIn">
-          <a routerLink="/login" routerLinkActive="active">Login</a>
+          <a routerLink="/login" (click)="toggleMenu()" routerLinkActive="active">Login</a>
       </li>
   </ul>
+ 
 </div>

@@ -2,10 +2,10 @@
     display: flex;
     padding-bottom: 72px;
     background-color: #e8e8e8;
-
 }
 h1 {
     font-weight: 400;
+    font-size: 42px;
 }
 .mat-card.top {
     z-index: 5;
@@ -132,6 +132,23 @@ ul a {
     margin-bottom: 16px;
 }
 
+#calendarCard h2 {
+    color: lightgrey;
+    font-weight: 200;
+    font-size: 24px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin: auto;
+}
+
+.month-row {
+    margin-bottom: 0px;
+}
+
+.month-row + .row {
+    margin-bottom: 0px;
+}
+
 .row.main {
     justify-content: center;
 }
@@ -140,10 +157,11 @@ ul a {
     font-size: 3rem;
     color: lightgrey;
 }
-
-.row.main > .col:nth-child(1) {
-    width: 33%;
-    min-height: 100%;
+@media (min-width: 800px) {
+    .row.main > .col:nth-child(1) {
+        width: 33%;
+        min-height: 100%;
+    }
 }
 
 .task-details {
@@ -212,4 +230,35 @@ li p {
 
 #date-col h3:nth-child(2) {
     font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+    .row.main {
+        flex-wrap: wrap-reverse;
+    }
+
+    .row.main > .col {
+        width: 100%;
+    }
+
+    .row.main .col .mat-card {
+        border-radius: 5px;
+    }
+
+    .row.main .col:nth-child(1) {
+        margin-top: -32px;
+    }
+    td {
+        padding: 8px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+    }
+    table {
+        margin: auto;
+    }
+    .main-container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
 }
