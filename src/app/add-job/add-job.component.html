@@ -16,12 +16,20 @@
             <mat-form-field>
                 <input matInput formControlName="title" placeholder="Position you're going for">
               </mat-form-field>
-             
+
+              <mat-form-field>
+                  <input matInput formControlName="location" placeholder="Location (optional)">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <textarea matInput placeholder="Description (optional)" matTextareaAutosize matAutosizeMinRows="2"
+                              matAutosizeMaxRows="5" formControlName="description"></textarea>
+                  </mat-form-field>
 
       </div>
     </form>
 
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button class="ml-auto" mat-button [mat-dialog-close]="companyForm.value">Save</button>
+    <button class="ml-auto" mat-button (click)="addJob()">Save</button>
 </mat-dialog-actions>

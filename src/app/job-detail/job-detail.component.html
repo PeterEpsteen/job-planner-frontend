@@ -16,6 +16,7 @@
               {{job.company.charAt(0)}}
             </div>
           <h2>{{job.company}}</h2>
+          <p id="location" *ngIf="job.location">{{job.location}}</p>
           <p *ngIf="job.title">{{job.title}}</p>
       </div>
       </div>
@@ -24,6 +25,11 @@
     <div *ngIf="job" class="main-container">
         <div class="row">
           <div class="col content">
+            <div *ngIf="job.description">
+                <h3>Description</h3>
+                <p>{{job.description}}</p>
+            </div>
+           
             
             <mat-divider class="divider"></mat-divider>
             <div class="row">

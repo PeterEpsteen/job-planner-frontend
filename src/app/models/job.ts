@@ -11,4 +11,5 @@ export class Job {
     todos: Todo[];
     companyDomain: string;
     dateAdded: string;
+    location: string;
 }

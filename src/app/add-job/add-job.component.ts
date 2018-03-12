@@ -22,6 +22,7 @@ export class AddJobComponent implements OnInit {
   suggestCompanies: Observable<Job[]>;
   companies: Company[];
   titles;
+  description: any;
   constructor(private jS: JobService, public dialogRef: MatDialogRef<AddJobComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder) {
       this.createForm();
@@ -29,9 +30,11 @@ export class AddJobComponent implements OnInit {
 
     createForm() {
       this.companyForm = this.fb.group({
-        company: '',
+        company: ['', Validators.required],
         title: '',
         companyDomain: '',
+        location: '',
+        description: ''
       });
       
     }
@@ -54,8 +57,10 @@ export class AddJobComponent implements OnInit {
 
 
   addJob() {
-    this.job = this.companyForm.value;
-    this.dialogRef.close(this.job);
+    if(this.companyForm.valid) {
+      this.job = this.companyForm.value;
+      this.dialogRef.close(this.job);
+    }
   }
 
   onNoClick() {

@@ -10,8 +10,10 @@
     color: white;
 }
 
+
+
 .main-container {
-    max-width: 1200px;
+    max-width: 900px;
     background: #EEEEEE;
 }
 
@@ -40,6 +42,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 32px;
+    max-width: 800px;
 }
 .strike-through .mat-checkbox-background {
     background-color: red !important;
