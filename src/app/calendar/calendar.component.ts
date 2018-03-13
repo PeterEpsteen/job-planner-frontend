@@ -37,8 +37,10 @@ export class CalendarComponent implements OnInit {
     this.days = this.daysInMonth(currentMonth, currentYear);
     this.weeks = Math.ceil(this.days/6);
     let firstDay = new Date(currentYear, currentMonth-1, 1);
-    this.detailsDate = firstDay;
     let currentWeekCount = [];
+    //Strip time away from date to make comparison easier
+    let fullDate = new Date(Date.now());
+    this.detailsDate = new Date(fullDate.getFullYear(), fullDate.getMonth(), fullDate.getDate());
     for (let i = 0; i < this.weeks; i++ ) {
       currentWeekCount.push(i);
     }
