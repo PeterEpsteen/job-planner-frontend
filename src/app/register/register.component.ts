@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl('/login');
       },
       error => {
-        console.log(error)
+        console.log("from component..." + error);
         if(error.status == 400) {
           this.nameTaken = true;
           return;

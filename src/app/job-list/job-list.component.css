@@ -33,6 +33,22 @@
     align-items: center;
     color: white;
 }
+
+select {
+   appearance: none;     
+    background: none;
+    color: white;
+    -webkit-appearance: none; 
+   -moz-appearance: none;
+   border: 0;
+   cursor: pointer;
+   margin-right: 24px;
+}
+
+.mat-select {
+    color: white !important;
+}
+
 .jobList > li {
     max-width: 400px;
     margin-right: 8px;

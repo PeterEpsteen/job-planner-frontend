@@ -26,12 +26,16 @@ export class JobDetailComponent implements OnInit {
   inProgressTodos: Todo[];
   completeTodos: Todo[];
   events: EventModel[];
+  edit: boolean;
+  isDescriptionEditing: boolean;
   job: Job;
   contacts: Contact[];
   constructor(public snackbar: MatSnackBar, public dialog: MatDialog, private route: ActivatedRoute, private router: Router, private jobService: JobService) { 
     }
 
   ngOnInit() {
+    this.isDescriptionEditing = false;
+    this.edit = false;
     this.serverError = false;
     this.isLoading = true;
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -66,6 +70,26 @@ export class JobDetailComponent implements OnInit {
 
 dateValid(todo: Todo): boolean {
   return !(new Date(todo.date).getFullYear() > 2039 );
+}
+
+editJob() {
+  if (this.edit) {
+    this.jobService.editJob(this.job).subscribe((newJob) => {
+      this.showSnackbar("Job details modified");
+    },
+    error => this.showSnackbar(error));
+  }
+  this.edit = !this.edit;
+}
+
+editDescription() {
+  if (this.isDescriptionEditing) {
+    this.jobService.editJob(this.job).subscribe((newJob) => {
+      this.showSnackbar("Job details modified");
+    },
+    error => this.showSnackbar(error));
+  }
+  this.isDescriptionEditing = !this.isDescriptionEditing;
 }
 
   pastDue(date: string): string {
@@ -119,6 +143,12 @@ dateValid(todo: Todo): boolean {
       this.snackbar.open("Contact deleted", null, {
         duration: 2000
       });
+    });
+  }
+
+  showSnackbar(message: string) {
+    this.snackbar.open(message, null, {
+      duration: 2000
     });
   }
 

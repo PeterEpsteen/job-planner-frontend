@@ -66,7 +66,6 @@ export class ProfileComponent implements OnInit {
         password: this.editUserForm.value.currentPassword
       };
       this.userService.login(login).subscribe(user => {
-       this.userService.setToken(user.token);
         this.userService.details().subscribe(user => {this.editUserConfirmed(user.id);}, error => {console.log(error);}
       );
     }, error=> {
@@ -97,13 +96,15 @@ export class ProfileComponent implements OnInit {
                   this.editUserForm.value.password : this.editUserForm.value.currentPassword,
         username: (this.editUserForm.value.username != '') ?
                   this.editUserForm.value.username : this.user.username,
-        token: ''
+        token: '',
+        googleId: null
         }
 
         this.userService.editUser(updatedUser).subscribe(res => {
           this.openSnackBar("Successfully update info.", null);
-          console.log(res);
-          this.ngOnInit();
+          this.userService.login({username: res.username, password: this.editUserForm.value.currentPassword})
+            .subscribe(res => this.ngOnInit(), error => console.log(error));
+          
         },
         error => {this.openSnackBar("New info rejected. Please try a different username.", null);});
     }

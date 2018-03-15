@@ -9,25 +9,42 @@
       <p>There seems to be an issue with our servers. Please try logging back in, or trying again later.</p>
     </div>
     <div class="row title-row">
-                
+        <div class="col">
+        </div>
         <div class="col">
             <img *ngIf="job.companyDomain" class="mat-card-avatar" src="{{job.companyDomain}}">
             <div *ngIf="!job.companyDomain" class="noLogo">
               {{job.company.charAt(0)}}
             </div>
-          <h2>{{job.company}}</h2>
-          <p id="location" *ngIf="job.location">{{job.location}}</p>
-          <p *ngIf="job.title">{{job.title}}</p>
-      </div>
+          <h2 (click)="editJob()" *ngIf="!edit">{{job.company}}</h2>
+          <input class="h2" type="text" *ngIf="edit" [(ngModel)]="job.company">
+              <p (click)="editJob()" id="location" *ngIf="(job.location && !edit); else editLocation">{{job.location}}</p>
+              <input type="text" *ngIf="edit" [(ngModel)]="job.location" placeholder="Location (optional)">
+              <p (click)="editJob()" *ngIf="job.title && !edit">{{job.title}}</p>
+              <input type="text" *ngIf="edit" [(ngModel)]="job.title" placeholder="Job title (optional)">
+              <input type="text" *ngIf="edit" [(ngModel)]="job.dateAdded" placeholder="Date Added (optional)">
+        </div>
+        <div class="col">
+            <span (click)="editJob()">
+              <i *ngIf="!edit" class="fas fa-pencil-alt"></i>
+              <i *ngIf="edit" class="far fa-save"></i>
+            </span>
+        </div>
+    
       </div>
 </div>
 <div class="body">
     <div *ngIf="job" class="main-container">
         <div class="row">
           <div class="col content">
-            <div *ngIf="job.description">
-                <h3>Description</h3>
-                <p>{{job.description}}</p>
+            <div>
+              <div class="row">
+                  <h3>Description</h3>
+                  <button class="ml-auto" *ngIf="!isDescriptionEditing" (click)="editDescription()" mat-button>Edit</button>
+              </div>
+                <textarea *ngIf="isDescriptionEditing" type="text" [(ngModel)]="job.description" rows="5"></textarea>
+                <p *ngIf="!isDescriptionEditing">{{job.description}}</p>
+                <div class="save row"><button *ngIf="isDescriptionEditing" mat-raised-button class="ml-auto" (click)="editDescription()">Save</button></div>
             </div>
            
             

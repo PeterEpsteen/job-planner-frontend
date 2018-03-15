@@ -70,6 +70,17 @@
                   </div>
                   
                   <table>
+                    <thead>
+                      <tr>
+                        <td>S</td>
+                        <td>M</td>
+                        <td>Tu</td>
+                        <td>W</td>
+                        <td>Th</td>
+                        <td>F</td>
+                        <td>S</td>
+                      </tr>
+                    </thead>
                     <tbody>
                       <tr *ngFor="let week of weekCount">
                         <td *ngFor="let day of dayCount" (click)="setDetails(week, day)"

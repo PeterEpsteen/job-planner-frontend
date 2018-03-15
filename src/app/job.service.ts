@@ -28,7 +28,7 @@ responseType: 'text' })
 @Injectable()
 export class JobService {
   private jobsUrl = 'https://www.api.mygigjournal.com/jobs/all';
-  private loginUrl = 'https://www.api.mygigjournal.com/users/login';
+  private loginUrl = 'https://www.api.mygigjournal.com/login';
   private registerUrl = 'https://www.api.mygigjournal.com/users/sign-up';
   private addJobsUrl = 'https://www.api.mygigjournal.com/jobs/add';
   token: string;
@@ -117,6 +117,12 @@ export class JobService {
       catchError(this.handleError<any>('deleteJob'))
     );
   }
+
+  editJob(job: Job): Observable<Job> {
+    return this.http.put(`https://www.api.mygigjournal.com/jobs/${job.id}`,
+            job, {headers: {'x-access-token': localStorage.getItem('token')}})
+            .pipe(catchError(this.handleError<any>('editUser')));
+}
 
   addContact(newContact: Contact, jobId: number): Observable<any> {
     return this.http.post<any>(`https://www.api.mygigjournal.com/jobs/contact/${jobId}`, newContact,  {

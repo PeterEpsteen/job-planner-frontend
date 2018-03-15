@@ -21,11 +21,16 @@ export class JobListComponent implements OnInit {
   newJob: Job;
   colors = ["", "blue", "violet", "green", "yellow"];
   randomColor = this.getRandomColor();
+  sortBy = [
+    {value: "dateAdded", viewValue: 'Date Added'},
+    {value: "company", viewValue: 'Name'}
+  ]
   viewSetting = "List";
   constructor(public dialog: MatDialog, private jobService: 
     JobService, private router: Router) {  }
 
     getJobs(): void {
+      console.log("getting jobs...");
       this.jobService.getJobs()
           .subscribe(jobs => {
             this.jobs = jobs;

@@ -40,7 +40,10 @@ export class CalendarComponent implements OnInit {
     let currentWeekCount = [];
     //Strip time away from date to make comparison easier
     let fullDate = new Date(Date.now());
-    this.detailsDate = new Date(fullDate.getFullYear(), fullDate.getMonth(), fullDate.getDate());
+    if (this.month == fullDate.getMonth() && this.year == fullDate.getFullYear())
+      this.detailsDate = new Date(fullDate.getFullYear(), fullDate.getMonth(), fullDate.getDate());
+    else
+      this.detailsDate = new Date(this.year, this.month, 1);
     for (let i = 0; i < this.weeks; i++ ) {
       currentWeekCount.push(i);
     }

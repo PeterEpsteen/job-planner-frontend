@@ -17,6 +17,7 @@ export class AuthService {
   }
 
   public changeLogin() {
+    console.log("Changed login to: " + this.isAuthenticated());
     this.isLoggedIn.next(this.isAuthenticated());
   }
 }

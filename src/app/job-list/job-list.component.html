@@ -3,12 +3,19 @@
     <div class="row navbar">
       <ul class="top-bar">
         <li>My Gigs</li>
-        <li class="ml-auto">
-          <button class="blue" mat-button (click)="addJob()">Add</button>
-        </li>
+      <li class="ml-auto">
+            <select placeholder="Sort By">
+                <option *ngFor="let option of sortBy" [value]="option.value">
+                  {{ option.viewValue }}
+                </option>
+              </select>
+      </li>
         <li>
           <button mat-button (click)="listView()">{{viewSetting}}</button>
         </li>
+        <li>
+            <button class="blue" mat-button (click)="addJob()">Add</button>
+          </li>
       </ul>
     </div>
     <div *ngIf="serverError" class="error">

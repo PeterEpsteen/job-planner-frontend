@@ -2,7 +2,7 @@
 <div *ngIf="serverError" class="error">
   <p>There seems to be an issue with our servers. Please try logging back in, or trying again later.</p>
 </div>
-<div *ngIf="user">
+<div class="body" *ngIf="user">
 <div class="navbar">
   <span>Profile Details</span>
   <span>{{user.username}}</span>
@@ -35,7 +35,8 @@
 
 
     </div>
-    <h1>Edit Profile</h1>
+    <div *ngIf="!user.googleId" class="row">
+      <h1>Edit Profile</h1>
     <mat-divider class="divider"></mat-divider>
     <div class="row">
       <div class="col">
@@ -83,6 +84,8 @@
         <button mat-button (click)="editUser()" class="blue ml-auto">Save</button>
       </div>
     </div>
+    </div>
+    
   </div>
 </div>
 </div>

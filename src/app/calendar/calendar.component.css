@@ -27,6 +27,7 @@ h3 {
 }
 li h3 {
     font-size: 16px;
+    font-weight: bold;
 }
 .task-details li p {
     color: white;
@@ -44,6 +45,13 @@ td {
     height: 50px;
     border-radius: 50%;
 }
+
+thead td {
+    padding: 0;
+    color: grey;
+    font-size: 14px;
+}
+
 td:hover {
     cursor: pointer;
 }
@@ -101,14 +109,12 @@ ul.tasks li {
 } 
 ul.tasks li:hover {
     border-left: 12px solid #E1BEE7;
-    font-weight: bold !important;
 } 
 ul.events li {
     border-left: 3px solid #AB47BC;
 }
 ul.events li:hover {
     border-left: 12px solid #AB47BC;
-    font-weight: bold !important;
 }
 
 ul {

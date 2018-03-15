@@ -27,6 +27,9 @@ button {
     align-self: flex-end;
     margin-bottom: 0;
 }
+#googleSignIn {
+    background: dodgerblue;
+}
 .loginCard .cardContent {
     flex: 1;
     padding: 24px;
