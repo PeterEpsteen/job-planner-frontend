@@ -122,6 +122,14 @@ div.row {
     max-width: 100%;
 }
 
+.mat-checkbox-checked {
+    box-sizing: border-box;
+    background: #6A1B9A;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+
 .noLogo {
     height: 72px;
     width: 72px;

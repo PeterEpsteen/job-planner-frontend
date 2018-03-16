@@ -3,10 +3,10 @@
     <form [formGroup]="eventForm">
     <div class="flex-container col">
           <mat-form-field>
-              <input matInput type="text" formControlName="title" placeholder="What happened? (IE Recieved job offer from...)">
+              <input matInput type="text" formControlName="title" placeholder="Event title">
             </mat-form-field>
               <mat-form-field>
-                    <input matInput formControlName="date" [matDatepicker]="picker" placeholder="When did it happen?">
+                    <input matInput formControlName="date" [matDatepicker]="picker" placeholder="When?">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>

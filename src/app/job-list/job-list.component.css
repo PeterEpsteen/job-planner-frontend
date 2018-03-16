@@ -77,6 +77,12 @@ select {
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+.no-jobs {
+    display: flex;
+    justify-content: center;
+}
+
 .mat-card > .row {
     flex-wrap: wrap;
 }

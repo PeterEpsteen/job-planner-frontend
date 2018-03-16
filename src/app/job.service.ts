@@ -203,3 +203,8 @@ export class JobService {
 //     catchError(this.handleError<User>('login')),
 //   );
 // }
+
+
+//  AIzaSyAmoYu5pcVO2eZx3gFY1c2gfj8vqj8N9Wk
+
+// https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Vict&types=(cities)&language=en&key=AIzaSyAmoYu5pcVO2eZx3gFY1c2gfj8vqj8N9Wk
