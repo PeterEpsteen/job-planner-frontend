@@ -5,11 +5,6 @@
     font-weight: bold;
 }
 
-p {
-
-}
-
-
 
 .mat-card.purple {
     color: white;
@@ -17,12 +12,13 @@ p {
     min-height: 400px;
     background: #6A1b9a;
     border-radius: 5px;
-    z-index: 100;
+    z-index: 4;
     margin-top: 32px;
     margin-bottom: 32px;
     box-sizing: border-box;
 }
 .mat-card.purple .col {
+    overflow-wrap: break-word;
     display: flex;
     flex-direction: column;
     height: 80%;
@@ -84,4 +80,20 @@ button {
     display: flex;
     flex-direction: row;
     width: 100%;
+}
+
+@media (max-width: 740px) {
+    .row {
+        flex-wrap: wrap;
+
+    }
+    .mat-card.purple {
+        width: 100%;
+        padding: 32px;
+    }
+    .mat-card.email {
+        width: 100%;
+        transform: none;
+        padding: 32px;
+    }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { EmailService } from '../email.service';
 
 @Component({
   selector: 'app-about-page',
@@ -8,11 +10,16 @@ import { Router } from '@angular/router';
 })
 export class AboutPageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router) {
+   }
+
+   
 
   ngOnInit() {
   }
 
+  
 
   goToCalendar() {
     this.router.navigateByUrl("/calendar");   

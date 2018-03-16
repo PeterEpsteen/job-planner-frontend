@@ -1,4 +1,6 @@
 .jumbotron {
+    z-index: -1;
+    position: fixed;
     box-sizing: border-box;
     padding-left: 32px;
     padding-right: 32px;
@@ -104,9 +106,21 @@ h4 + p {
     .jumbotron .col:nth-child(2) {
         display: none;
     }
+
+    .jumbotron .col:nth-child(1) {
+        width: 100%;
+    }
+
+    .jumbotron {
+        position: relative;
+    }
+    .body {
+        margin-top: 0px !important;
+    }
 }
 
 .body {
+    margin-top: 460px;
     min-height: 100%;
     width: 100%;
     background: white;

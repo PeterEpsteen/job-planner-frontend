@@ -1,3 +1,6 @@
+<mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+
+
 <div class="row">
     <mat-card class="mat-elevation-z16 purple">
       <div class="col">
@@ -5,20 +8,22 @@
           <div class="col">
               <div><p><span><i class="fas fa-address-card"></i></span>Peter Epsteen</p></div>
               <div><p><span><i class="fas fa-envelope"></i></span> <a href="mailto:peterepsteen@gmail.com">peterepsteen@gmail.com</a></p></div>
-              <div><p><span><i class="fas fa-mouse-pointer"></i></span>peterepsteen.me</p></div>
+              <div><p><span><i class="fas fa-mouse-pointer"></i></span> <a href="https://peterepsteen.me" target="_blank">peterepsteen.me</a></p></div>
               <div>
-                <p><span><i class="fas fa-phone"></i></span>805-208-6930</p>
+                <p><span><i class="fas fa-phone"></i></span><a href="tel:805-208-6930">805-208-6930</a></p>
               </div>
           </div>
       </div>
     </mat-card>
     <mat-card class="email">
-      <div class="col">
-          <p class="header">Get In Touch</p>
-          <input type="text" placeholder="Your Name">      
-          <input type="text" placeholder="Your Email">
-          <textarea name="" id="" rows="10" placeholder="Your Message"></textarea>
-          <button mat-raised-button class="blue">Send!</button>      
-      </div>
+      <form [formGroup]="emailForm"> 
+          <div class="col">
+              <p class="header">Get In Touch</p>
+              <input type="text" placeholder="Your Name" formControlName="senderName">      
+              <input type="text" placeholder="Your Email" formControlName="fromEmail">
+              <textarea name="" id="" rows="10" placeholder="Your Message" formControlName="message"></textarea>
+              <button mat-raised-button (click)="sendEmail()" class="blue">Send!</button>      
+          </div>
+      </form>
     </mat-card>
 </div>

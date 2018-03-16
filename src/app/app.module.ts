@@ -60,6 +60,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactCardComponent } from './contact-card/contact-card.component';
+import { EmailService } from './email.service';
 
 
 const routes: Routes = [
@@ -113,7 +114,7 @@ const routes: Routes = [
     BrowserAnimationsModule
   ],
   entryComponents: [JobDetailComponent, AddJobComponent, AddTodoComponent, AddContactComponent, AddEventComponent],
-  providers: [CookieService, JobService, AuthGaurdService, AuthService, UserService],
+  providers: [CookieService, JobService, AuthGaurdService, AuthService, UserService, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
