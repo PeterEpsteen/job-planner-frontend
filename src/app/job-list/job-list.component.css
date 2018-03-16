@@ -8,7 +8,7 @@
 
 /* @media screen (width: ) 
 .navbar {
-    background: #303030;
+    background: #6A1B9A;
     width: 100%;
 } */
 
@@ -20,7 +20,11 @@
     background-color: #303030;
 }
 
-
+.date-added p {
+    font-size: 12px;
+    margin: 2px !important;
+    color: grey;
+}
 
 .top-bar {
     box-sizing: border-box;
@@ -74,7 +78,6 @@ select {
     margin-bottom: 8px;
 }
 .mat-card > .row {
-    padding-right: 32px;
     flex-wrap: wrap;
 }
 
@@ -151,16 +154,16 @@ select {
     text-align: center;
     width: 100%;
     font-size: 2rem;
-    color: #303030;
+    color: #6A1B9A;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .main-container .top-bar {
     justify-content: center;
 }
 .blue {
-    background-color: #303030;
+    background-color: #6A1B9A;
 }
 .violet {
     background-color: darkmagenta;
@@ -173,7 +176,7 @@ select {
 }
 #logo {
     font-size: 2rem;
-    color: #303030;
+    color: #6A1B9A;
     font-weight: bold
 }
 .jobList.list {

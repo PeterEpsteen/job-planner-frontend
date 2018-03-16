@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Router, CanActivate} from '@angular/router';
 import {AuthService} from './auth.service';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
 
 @Injectable()
 export class AuthGaurdService implements CanActivate {
@@ -11,10 +11,12 @@ export class AuthGaurdService implements CanActivate {
 
   canActivate():  boolean {
     if (!this.auth.isAuthenticated()) {
-      this.router.navigateByUrl('/login');
-      this.snackbar.open("Please login to view this page", null, {
-        duration: 2000,
-      });
+      this.router.navigateByUrl('/register');
+      let config = new MatSnackBarConfig();
+      config.verticalPosition = "top";
+      config.panelClass = ['accent'];
+      config.duration = 2000;
+      this.snackbar.open("Please login to view this page", null, config);
       return false;
     }
     return true;

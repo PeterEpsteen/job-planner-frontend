@@ -2,20 +2,34 @@
     box-sizing: border-box;
     padding-left: 32px;
     padding-right: 32px;
-    height: 300px;
+    height: 460px;
     width: 100%;
     background-color: #303030;
+    background: linear-gradient(to bottom right, #303030, #424242);
 }
 
 .jumbotron > div {
     display: flex;
     margin: auto;
-    max-width: 1200px;
+    max-width: 1400px;
     height: 100%;
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+    flex-wrap: wrap;
 } 
+
+.jumbotron .col {
+    width: 48%;
+}
+
+.jumbotron .col:nth-child(2) {
+    height: 80%;
+    margin-top: auto;
+    background-image: url("../../assets/img/calendar.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .jumbotron button {
     margin-top: 16px;
@@ -39,7 +53,20 @@ h2 {
     font-size: 2rem;
     margin-bottom: 32px;
     max-width: 600px;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
+}
+
+.contact .col {
+    width: 100%;
+}
+
+.flex-container > .row:nth-of-type(2) {
+    margin-top: 64px;
+}
+
+.mat-card {
+    background-color: #6A1B9A;
 }
 
 h4 {
@@ -51,13 +78,14 @@ h4 + p {
     margin-bottom: 32px;
 }
 .flex-container {
-    max-width: 1200px;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
     margin: auto;
     padding-right: 16px;
     padding-left: 16px;
     padding-top: 40px;
+    padding-bottom: 64px;
 }
 
 .row {
@@ -68,10 +96,16 @@ h4 + p {
     justify-content: space-between;
 }
 @media (min-width: 600px) {
-    .row > .col {
+    .row.main > .col {
         width: 30%;
     }
 }
+@media (max-width: 1000px) {
+    .jumbotron .col:nth-child(2) {
+        display: none;
+    }
+}
+
 .body {
     min-height: 100%;
     width: 100%;

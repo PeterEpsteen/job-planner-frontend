@@ -13,6 +13,11 @@ export class AboutPageComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  goToCalendar() {
+    this.router.navigateByUrl("/calendar");   
+  }
+
   goToJobs() {
     this.router.navigateByUrl('/jobs');
   }

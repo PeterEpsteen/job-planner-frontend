@@ -1,4 +1,4 @@
-
+<mat-progress-bar class="spinner" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 <div class="flex-container main">
         <div class="col">
 
@@ -7,7 +7,10 @@
                                 <mat-card-content class="cardContent">
                                     <div class="flex-container col">
                                                 <h3 class="red" *ngIf="loginFailed" >
-                                                Login Failed
+                                                Login failed. Please check username and password, and try again.
+                                                </h3>
+                                                <h3 class="red" *ngIf="googleLoginFailed" >
+                                                    There was an error retreiving your Google user information. Please try again.
                                                 </h3>
                                                     <h3>Login to your account</h3>
                                                             <input name="username" type="text" [(ngModel)]="loginInfo.username" placeholder="username">

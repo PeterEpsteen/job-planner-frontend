@@ -59,6 +59,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContactCardComponent } from './contact-card/contact-card.component';
 
 
 const routes: Routes = [
@@ -69,7 +70,7 @@ const routes: Routes = [
   {path: 'job/:id', component: JobDetailComponent, canActivate: [AuthGaurdService]},
   {path: 'about', component: AboutPageComponent},
   {path: 'calendar', component: CalendarComponent, canActivate: [AuthGaurdService]},
-  {path: '**', redirectTo: 'about'}
+  {path: '**', redirectTo: 'jobs'}
 ];
 
 @NgModule({
@@ -86,7 +87,8 @@ const routes: Routes = [
     AddContactComponent,
     AboutPageComponent,
     CalendarComponent,
-    ProfileComponent
+    ProfileComponent,
+    ContactCardComponent
   ],
   imports: [
     BrowserModule,

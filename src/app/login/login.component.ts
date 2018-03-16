@@ -14,7 +14,9 @@ declare const gapi: any;
 })
 export class LoginComponent implements AfterViewInit {
   loginFailed: boolean;
+  googleLoginFailed: boolean;
   noPassword: boolean;
+  isLoading: boolean;
   
   loginInfo: Login = {
     username: "",
@@ -25,7 +27,7 @@ export class LoginComponent implements AfterViewInit {
     UserService, private auth: AuthService, private ngZone: NgZone) { }
 
   login(): void {
-
+    this.isLoading = true;
     if (this.loginInfo.password == "") {
       this.noPassword = true;
       return;
@@ -34,8 +36,10 @@ export class LoginComponent implements AfterViewInit {
     this.userService.login(this.loginInfo) 
     .subscribe(user => {
       this.router.navigateByUrl("/jobs");
+      this.isLoading = false;
     }, error => {
       this.loginFailed = true;
+      this.isLoading = false;
     });
   }
   logout(): void {
@@ -59,6 +63,7 @@ export class LoginComponent implements AfterViewInit {
   public attachSignin(element) {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
+        this.isLoading = true;
 
         let profile = googleUser.getBasicProfile();
         let token = googleUser.getAuthResponse().id_token;
@@ -69,8 +74,8 @@ export class LoginComponent implements AfterViewInit {
         console.log('Email: ' + profile.getEmail());
         //YOUR CODE HERE
         this.userService.googleLogin(token).subscribe(res => {
-          this.ngZone.run(() => this.router.navigateByUrl("/jobs"));
-        }, err => {this.loginFailed = true});
+          this.ngZone.run(() => {this.router.navigateByUrl("/jobs"); this.isLoading = false;});
+        }, err => {this.googleLoginFailed = true});
 
 
       }, (error) => {

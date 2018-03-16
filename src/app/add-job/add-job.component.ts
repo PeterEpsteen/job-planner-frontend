@@ -39,6 +39,7 @@ export class AddJobComponent implements OnInit {
       
     }
 
+
   ngOnInit() {
     this.companyForm.get('company').valueChanges
       .subscribe(term => {

@@ -33,7 +33,9 @@ export class JobListComponent implements OnInit {
       console.log("getting jobs...");
       this.jobService.getJobs()
           .subscribe(jobs => {
-            this.jobs = jobs;
+            this.jobs = jobs.sort((a, b) => {
+              return new Date(b.dateAdded).valueOf() - new Date(a.dateAdded).valueOf();
+            });
             this.isLoading = false;
             this.serverError = false;
           },
@@ -50,6 +52,20 @@ export class JobListComponent implements OnInit {
   getNearestTask(job: Job) {
     let inProgressTodos = job.todos.filter(todo => todo.complete != 'true');
     return inProgressTodos.sort(this.sortByDate)[0];
+  }
+
+  sortJobsBy(e) {
+    if(e.target.value == 'company') {
+      this.jobs.sort((a, b) => {
+        if(a.company.toUpperCase() == b.company.toUpperCase()) return 0;
+        return (a.company.toUpperCase() > b.company.toUpperCase()) ? 1 : -1;
+      });
+    }
+    else if(e.target.value == 'dateAdded') {
+      this.jobs.sort((a, b) => {
+        return new Date(b.dateAdded).valueOf() - new Date(a.dateAdded).valueOf();
+      });
+    }
   }
 
   onSelect(job: Job): void {

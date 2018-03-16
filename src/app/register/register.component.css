@@ -13,7 +13,7 @@
     max-width: 240px;
 }
 button {
-    background: #303030;
+    background: #6A1B9A;
     color: white;
 }
 .main h1 {
@@ -27,6 +27,9 @@ button {
     align-self: flex-end;
     margin-bottom: 0;
 }
+#googleSignIn {
+    background: dodgerblue;
+}
 .loginCard .cardContent {
     flex: 1;
     padding: 24px;
@@ -34,7 +37,7 @@ button {
 a {
     padding-bottom: 16px;
     margin: auto;
-    color: #303030;
+    color: #6A1B9A;
     text-decoration: none;
 }
 .loginCard .col {
