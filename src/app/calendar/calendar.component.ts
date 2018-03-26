@@ -61,6 +61,10 @@ export class CalendarComponent implements OnInit {
     return (this.getDate(week, day).getTime() == this.detailsDate.getTime());
   }
 
+  hasTime(event) {
+    return (new Date(event.date).getSeconds() == 33);
+  }
+
   monthIncrease() {
     this.month++;
     this.ngOnInit();

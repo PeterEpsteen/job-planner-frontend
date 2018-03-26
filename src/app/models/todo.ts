@@ -1,7 +1,8 @@
 export class Todo {
-    id: number;
+    id?: number;
     title: string;
-    date: string;
-    complete: string;
-    jobId: number;
+    date: Date;
+    complete?: string;
+    description: string;
+    jobId?: number;
 }

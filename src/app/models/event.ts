@@ -1,6 +1,6 @@
 export class EventModel {
     title: string;
     description: string;
-    date: string;
+    date: Date;
     jobId: number;
 }

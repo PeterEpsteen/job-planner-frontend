@@ -10,7 +10,10 @@
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                   </mat-form-field>
-                  
+                  <mat-form-field>
+                    <input matInput formControlName="time" type="time" placeholder="Time of day (optional)">
+                  </mat-form-field>  
+
               <mat-form-field>
                 <input matInput formControlName="description" placeholder="Details (optional)">
               </mat-form-field>

@@ -32,6 +32,7 @@
                       <li *ngFor="let task of taskHere(detailsDate)">
                           <a [routerLink]="['/job', task.jobId]">
                             <h3>{{task.title}}</h3>
+                            <p class="subtitle" *ngIf="hasTime(task)">Due by: {{task.date | date:'h:mm a'}}</p>
                             <p *ngIf="task.description">{{task.description}}</p>
                           </a>
                       </li>
@@ -46,6 +47,7 @@
                        <li *ngFor="let event of eventHere(detailsDate)">
                            <a [routerLink]="['/job', event.jobId]">
                              <h3>{{event.title}}</h3>
+                             <p class="subtitle" *ngIf="hasTime(event)">Due by: {{event.date | date:'h:mm a'}}</p>
                              <p *ngIf="event.description">{{event.description}}</p>
                            </a>
                        </li>

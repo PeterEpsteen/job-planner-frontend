@@ -20,13 +20,20 @@ export class AddEventComponent implements OnInit {
        this.eventForm = this.fb.group({
          title: ['', Validators.required],
          date: '',
-         description: ''
+         description: '',
+         time: ''
        });
      }
 
      saveEvent() {
-       if(this.eventForm.valid)
-       this.dialogRef.close(this.eventForm.value);
+       if(this.eventForm.valid) {
+        if(this.eventForm.value.time != '') {
+          this.eventForm.value.date.setHours(+this.eventForm.value.time.toString().split(":")[0]);
+          this.eventForm.value.date.setMinutes(+this.eventForm.value.time.toString().split(":")[1]);
+          this.eventForm.value.date.setSeconds(33);
+        }
+        this.dialogRef.close(this.eventForm.value);
+       }
      }
 
   ngOnInit() {

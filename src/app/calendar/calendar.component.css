@@ -46,6 +46,10 @@ td {
     border-radius: 50%;
 }
 
+.subtitle {
+    color: rgb(202, 173, 219) !important;
+}
+
 thead td {
     padding: 0;
     color: grey;

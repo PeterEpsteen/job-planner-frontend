@@ -68,10 +68,19 @@
                           <mat-checkbox color="warn" (change)="checkTodo($event, todo)"></mat-checkbox>
                            <span class="large" [ngClass]="{'strike-through': todo.complete == 'true'}">{{todo.title}}</span>
                           </mat-panel-title>
-                          <mat-panel-description *ngIf="dateValid(todo)" class="todo-date">
-                            <span [ngClass]="pastDue(todo.date)">Due By: {{todo.date | date}}</span>    
-                          </mat-panel-description>
-                        </mat-expansion-panel-header>
+                          <span *ngIf="dateValid(todo)">
+                            <mat-panel-description *ngIf="timeValid(todo); else no_todo_time" class="todo-date">
+                              <span [ngClass]="pastDue(todo.date)">Due By: {{todo.date | date : 'MMM d, y \'at\' h:mm a'}}
+                              </span>    
+                            </mat-panel-description>
+                            <ng-template #no_todo_time>
+                              <mat-panel-description class="todo-date">
+                                <span [ngClass]="pastDue(todo.date)">Due By: {{todo.date | date : 'MMM d, y'}}
+                                </span>    
+                              </mat-panel-description>
+                            </ng-template>
+                          </span>
+                                                 </mat-expansion-panel-header>
                         <div class="row">
                           <div class="col">
                               <p>{{todo.description}}</p>
@@ -97,7 +106,7 @@
                              <span class="large" [ngClass]="{'strike-through': todo.complete}">{{todo.title}}</span>
                             </mat-panel-title>
                             <mat-panel-description [ngClass]="{'strike-through': todo.complete == 'true'}" class="todo-date">
-                              Due By: {{todo.date | date}}
+                              Due By: {{todo.date | date : 'M/d/yy'}}
                             </mat-panel-description>
                           </mat-expansion-panel-header>
                           <div class="row">
@@ -129,9 +138,14 @@
                             <mat-panel-title>
                              <span class="large">{{event.title}}</span>
                             </mat-panel-title>
-                            <mat-panel-description class="todo-date">
-                              {{event.date | date}}
+                            <mat-panel-description *ngIf="timeValid(event);else no_time" class="todo-date">
+                              {{event.date | date:'MMM d, y \'at\' h:mm a'}}
                             </mat-panel-description>
+                            <ng-template #no_time>
+                              <mat-panel-description class="todo-date">
+                                {{event.date | date:'MMM d, y'}}
+                              </mat-panel-description>
+                            </ng-template>
                           </mat-expansion-panel-header>
                           <div class="row">
                             <div class="col">

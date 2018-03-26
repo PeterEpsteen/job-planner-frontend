@@ -40,6 +40,7 @@ export class JobDetailComponent implements OnInit {
     this.isLoading = true;
     let id = parseInt(this.route.snapshot.paramMap.get('id'));
     this.jobService.getJob(id).subscribe(job => {
+      console.log(job);
       this.job = job; this.initializeJob();
     }, err => {this.serverError = true;});
   }
@@ -63,13 +64,34 @@ export class JobDetailComponent implements OnInit {
       return aDate.getTime() -  bDate.getTime();
   }
   eventSortByDate(a: EventModel, b: EventModel): number {
+    if(b.date.toString() == '' && a.date.toString() != '') {
+      console.log("no date");
+      return -1;
+    }
+    else if(b.date.toString() != '' && a.date.toString() == '')
+      return 1;
+    else if (b.date.toString() == '' && a.date.toString() == '')
+      return 0;
     let bDate = new Date(b.date);
     let aDate = new Date(a.date);
-    return bDate.getTime() - aDate.getTime() ;
+    let returnInt = 0;
+    if (bDate.getTime() - aDate.getTime() > 0)
+      returnInt = 1;
+    else if (bDate.getTime() - aDate.getTime() < 0)
+      returnInt = -1;
+    return returnInt;
 }
 
 dateValid(todo: Todo): boolean {
   return !(new Date(todo.date).getFullYear() > 2039 );
+}
+
+timeValid(todo): boolean {
+  return (new Date(todo.date).getSeconds() == 33);
+}
+
+timeInvalid(todo): boolean {
+  return !(new Date(todo.date).getSeconds() == 33);
 }
 
 editJob() {
