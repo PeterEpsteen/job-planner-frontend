@@ -50,6 +50,10 @@ textarea {
     width: 100%;
 }
 
+.job-description {
+    white-space: pre-wrap;
+}
+
 .title-row .col:nth-child(3) {
     display: flex;
     justify-content: flex-end;

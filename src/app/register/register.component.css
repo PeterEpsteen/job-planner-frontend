@@ -34,6 +34,13 @@ button {
     flex: 1;
     padding: 24px;
 }
+
+.main > .col {
+    align-items: center;
+    width: 100%;
+    background: #303030;
+}
+
 a {
     padding-bottom: 16px;
     margin: auto;

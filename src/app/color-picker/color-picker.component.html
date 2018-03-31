@@ -1,0 +1,13 @@
+<div class="color-picker" (mouseenter)="showColorPicker(true)" (mouseleave)="showColorPicker(false)" >
+    <i class="fas fa-paint-brush"></i>
+    <div *ngIf="showPicker" (mouseenter)="showColorPicker(true)" (mouseleave)="showColorPicker(false)" class="picker">
+      <div class="flex-container">
+        <div class="red"></div>
+        <div class="yellow"></div>
+        <div class="orange"></div>
+        <div class="green"></div>
+        <div class="blue"></div>
+        <div class="purple"></div>
+      </div>
+    </div>
+</div>

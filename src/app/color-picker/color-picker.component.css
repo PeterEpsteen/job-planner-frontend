@@ -1,0 +1,62 @@
+.color-picker {
+    position: relative;
+    z-index: 1000;
+    height: 10px;
+}
+
+.color-picker .picker {
+    display: block;
+    position: absolute;
+    top: -5px;
+    width: 140px;
+    height: 100px;
+    background: white;
+    -webkit-box-shadow: -1px 3px 60px -14px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 3px 60px -14px rgba(0,0,0,0.75);
+    box-shadow: -1px 3px 60px -14px rgba(0,0,0,0.75);
+}
+
+.flex-container {
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.flex-container div {
+    width: 32px;
+    border-radius: 50%;
+    height: 32px;
+}
+
+.flex-container div:hover {
+    border: 2px solid grey;
+}
+
+.red {
+    background: #FFAB91;     
+}
+
+.yellow {
+    background: #FFF59D
+}
+
+.orange {
+    background: #FFCC80;
+}
+
+.green {
+    background: #A5D6A7;
+}
+
+.blue {
+    background: #90CAF9;
+}
+
+.purple {
+    background: #B39DDB;
+}

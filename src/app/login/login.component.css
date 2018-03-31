@@ -1,3 +1,4 @@
+
 .flex-container.main {
     background: #303030;
     padding-top: 64px;
@@ -40,14 +41,18 @@ a {
     color: #6A1B9A;
     text-decoration: none;
 }
-.loginCard .col {
+.main > .col {
     align-items: center;
+    width: 100%;
+    background: #303030;
 }
 
 .loginCard h3 {
     text-align: center;
 }
-
+.loginCard .col {
+    align-items: center;
+}
 .loginCard .col * {
     margin-bottom: 16px;
 }

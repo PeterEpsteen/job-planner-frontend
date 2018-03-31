@@ -96,6 +96,7 @@ timeInvalid(todo): boolean {
 
 editJob() {
   if (this.edit) {
+
     this.jobService.editJob(this.job).subscribe((newJob) => {
       this.showSnackbar("Job details modified");
     },
@@ -106,6 +107,7 @@ editJob() {
 
 editDescription() {
   if (this.isDescriptionEditing) {
+
     this.jobService.editJob(this.job).subscribe((newJob) => {
       this.showSnackbar("Job details modified");
     },

@@ -61,6 +61,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactCardComponent } from './contact-card/contact-card.component';
 import { EmailService } from './email.service';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
+import { JobCardComponent } from './job-card/job-card.component';
 
 
 const routes: Routes = [
@@ -89,7 +91,9 @@ const routes: Routes = [
     AboutPageComponent,
     CalendarComponent,
     ProfileComponent,
-    ContactCardComponent
+    ContactCardComponent,
+    ColorPickerComponent,
+    JobCardComponent
   ],
   imports: [
     BrowserModule,

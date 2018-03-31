@@ -42,7 +42,7 @@
                   <button class="ml-auto" *ngIf="!isDescriptionEditing" (click)="editDescription()" mat-button>Edit</button>
               </div>
                 <textarea *ngIf="isDescriptionEditing" type="text" [(ngModel)]="job.description" rows="5"></textarea>
-                <p *ngIf="!isDescriptionEditing">{{job.description}}</p>
+                <p class="job-description" *ngIf="!isDescriptionEditing">{{job.description}}</p>
                 <div class="save row"><button *ngIf="isDescriptionEditing" mat-raised-button class="ml-auto" (click)="editDescription()">Save</button></div>
             </div>
            
